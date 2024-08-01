@@ -1,4 +1,4 @@
-import styles from './pdfEEE.module.css';
+import styles from './PdfEEE.module.css';
 import embasaLogo from '../../../assets/embasaLogo.png';
 
 // HOOKS
