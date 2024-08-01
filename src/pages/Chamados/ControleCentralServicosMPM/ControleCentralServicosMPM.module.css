@@ -1,0 +1,254 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.botao_salvar {
+  width: 100%;
+  margin-bottom: 1rem;
+  display: flex;
+
+  & button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    width: 5.5rem;
+    background-color: green;
+    color: #fff;
+    font-weight: bold;
+    border: none;
+    padding: 5px;
+    cursor: pointer;
+    height: 2rem;
+  }
+
+  & i {
+    color: #fff;
+    font-size: 1.2em;
+  }
+
+  & button:hover {
+    background-color: rgb(6, 173, 6);
+  }
+}
+
+
+.container_botao_exportar_procurar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 99.5%;
+  margin-bottom: .2em;
+  margin-top: 3rem;
+
+  & button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    width: 5.5rem;
+    background-color: green;
+    color: #fff;
+    font-weight: bold;
+    border: none;
+    padding: 5px;
+    cursor: pointer;
+    height: 2rem;
+    margin-left: 30px;
+  }
+
+  & i {
+    color: #fff;
+    font-size: 1.2em;
+  }
+
+  & button:hover {
+    background-color: rgb(13, 218, 13);
+  }
+
+  & input {
+    height: 2rem;
+    width: 20rem;
+    background-color: #fff;
+  }
+
+  & .filtros_link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+
+    & span {
+      text-decoration: underline;
+      color: blue;
+      cursor: pointer;
+    }
+
+    & span:hover {
+      text-decoration: underline;
+      color: green;
+      cursor: pointer;
+    }
+  }
+}
+
+.inputs {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: .5rem;
+
+  & input {
+    width: 100%;
+    width: 13rem;
+  }
+}
+
+.table {
+  width: 100%;
+}
+
+.items_components:hover {
+  & .button {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: absolute;
+    bottom: .5em;
+    color: green;
+    cursor: pointer;
+    z-index: 999;
+  }
+}
+
+.button {
+  font-size: .7rem;
+  display: none;
+  width: 95%;
+
+  & button {
+    border: none;
+    background-color: #fff;
+    font-size: .7rem;
+    cursor: pointer;
+    border-radius: 20px;
+  }
+}
+
+#dropdown {
+  cursor: pointer;
+  font-size: 1.2em;
+}
+
+#dropdown_active:hover .options {
+  display: flex;
+  height: auto;
+  opacity: 1;
+}
+
+.options {
+  display: none;
+  flex-direction: column;
+  background-color: rgb(5, 5, 92);
+  height: auto;
+  width: 7rem;
+  position: absolute;
+  right: 1.3rem;
+  padding: 5px;
+  gap: 10px;
+  z-index: 999;
+  margin-top: .5rem;
+  opacity: 0;
+  transition: 1s;
+}
+
+.options li {
+  list-style: none;
+  text-align: center;
+}
+
+.options li button {
+  background-color: transparent;
+  border: none;
+  height: 1.3rem;
+  cursor: pointer;
+  position: relative;
+  color: #fff;
+  font-weight: bold;
+  width: 100%;
+}
+
+.options button:hover {
+  background-color: #9a989860;
+}
+
+.options i {
+  margin-right: 0.5rem;
+  color: #fff;
+}
+
+#arrow_active {
+  transition: .5s;
+  transform: rotate(180deg);
+  color: green;
+}
+
+#arrow_inactive {
+  transition: .5s;
+  transform: rotate(360deg);
+  color: #000;
+}
+
+.search_input {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.observacao {
+  width: 98%;
+  height: 3rem;
+}
+
+.urgent {
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  animation: ativo 1s linear infinite;
+  background-color: #ff0000;
+  animation: urgent 1s linear infinite;
+}
+
+.normal {
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  background-color: rgb(84, 221, 5);
+  animation: stable 1s linear infinite;
+}
+
+.status {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.supervisao {
+  height: 2.6rem;
+  background-color: #fff;
+}
+
+#recarregar_pagina {
+  color: #000;
+  font-size: .8em;
+  cursor: pointer;
+  border-radius: 100%;
+}
+
+#recarregar_pagina:hover {
+  background-color: #ccc;
+}

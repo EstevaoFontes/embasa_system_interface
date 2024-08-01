@@ -1,0 +1,35 @@
+.table{
+    width: 70rem;
+    margin-bottom: 1rem;
+}
+
+
+.table thead{
+    background-color: rgb(3, 3, 101);
+    color: #fff;
+}
+
+tbody > tr:nth-of-type(even) {
+    background-color: #fff;
+}
+
+.table textarea{
+    width: 300px;
+    height: 50px;
+}
+
+.table input{
+    width: 50px;
+    height: 15px;
+}
+
+.item{
+    width: 200px;
+}
+
+.second_head_not_has{
+    width: 300px;
+}
+
+
+

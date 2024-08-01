@@ -1,0 +1,121 @@
+.background {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.715);
+    z-index: 99999;
+}
+
+.modalFinish {
+    border: 1px solid #fff;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 23rem;
+    height: auto;
+    background-color: #fff;
+    animation: modalShow 1s ease;
+    color: #000;
+}
+
+.modalFinish label{
+    font-size: .9em;
+}
+
+.button {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    margin-top: 1.5rem;
+}
+
+.button button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 7rem;
+    height: 2rem;
+    padding: 8px;
+}
+
+
+#formatedInformations {
+    background-color: #ccc;
+    border: 2px dashed #000;
+    border-radius: 5px;
+    color: #2b2525;
+    font-weight: bold;
+    height: 1rem;
+}
+
+.input {
+    height: 1rem;
+    width: 20rem;
+}
+
+@keyframes modalShow {
+    0% {
+        opacity: 0;
+    }
+}
+
+.checkWrong {
+    display: flex;
+    align-items: center;
+}
+
+.checkWrong input {
+    display: none;
+}
+
+.switch {
+    position: relative;
+    background-color: #777;
+    width: 35px;
+    height: 15px;
+    display: flex;
+    border-radius: 40px;
+    padding: 5px;
+    transition: all .3s ease-in-out;
+    cursor: pointer;
+    margin: 0 0 0 5px;
+}
+
+.slider {
+    position: absolute;
+    background-color: #fff;
+    border-radius: 50%;
+    width: 15px;
+    height: 15px;
+    transition: all .3s ease-in-out;
+    left: 0.2rem;
+}
+
+.checkWrong input:checked~.switch {
+    background-color: red;
+}
+
+.checkWrong input:checked~.switch .slider {
+    transform: translateX(24px);
+}
+
+.formWrong {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.formWrong input {
+    border-color: red;
+    height: 1rem;
+}

@@ -1,0 +1,109 @@
+.container label {
+    margin-bottom: 1.5rem;
+}
+
+.nome_titulo{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.nome_titulo p {
+    color: #aaa;
+    font-size: medium;
+}
+
+.select {
+    height: 11rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    margin-bottom: 2em;
+    padding: 10px;
+    background-color: #fff;
+}
+
+.select select {
+    margin-right: 4em;
+    width: 18em;
+    background-color: #fff;
+}
+
+.select input {
+    margin-right: 4em;
+    width: 17em;
+    height: 1rem;
+    background-color: #fff;
+}
+
+#formatedInformations {
+    height: 1.5em;
+    width: 37rem;
+    background-color: #ccc;
+    border: 2px dashed #000;
+    border-radius: 5px;
+    padding: 8px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #585858;
+}
+
+abbr {
+    text-decoration: none;
+}
+
+
+.atualization {
+    padding: 5px;
+    width: 10rem;
+    border: none;
+    border-radius: 5px;
+    background-color: rgb(40, 40, 162);
+    cursor: pointer;
+    margin-bottom: 0.5rem;
+    color: #fff;
+}
+
+.atualization:hover {
+    background-color: rgb(47, 47, 240);
+}
+
+#buttonCalled {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 38rem;
+}
+
+.container_atualizacoes{
+    display: flex;
+    flex-direction: column;
+    border: 1px solid black;
+    margin-bottom: .7rem;
+    width: 37rem;
+    height: auto;
+    padding: .5rem;
+    border-radius: 10px;
+    background-color: #ccc;
+}
+
+.atualizacao_user{
+    display: flex;
+    font-size: .8em;
+    color: grey;
+    gap: 2rem;
+}
+
+.inputs{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+
+.inputs label{
+    width: 18.5rem;
+    height: 3.5rem;
+}

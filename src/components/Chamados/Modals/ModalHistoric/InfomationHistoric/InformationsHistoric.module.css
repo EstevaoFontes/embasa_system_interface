@@ -1,0 +1,48 @@
+.informations_historic{
+    display: flex;
+    flex-direction: column;
+    margin-top: .8rem;
+    margin-left: 0.5rem;
+    text-align: left;
+}
+
+.action{
+    font-size: small;
+    color: rgb(86, 86, 238);
+}
+
+.date{
+    font-size: 0.7em;
+    color: #878787;
+    margin-top: .2rem;
+}
+
+.title{
+    font-size: small;
+    margin-top: .2rem;
+    font-weight: bold;
+}
+
+
+.icon_name {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-bottom: .2rem;
+}
+
+.icon_name i{
+    font-size: .9em;
+    color: grey;
+}
+
+.icon_name span{
+    font-size: .8em;
+    color: grey;
+    margin-left: .3rem;
+}
+
+.icon_name .informatioHistoric{
+    font-size: .7em;
+}
+

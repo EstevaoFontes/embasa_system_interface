@@ -1,0 +1,107 @@
+.background {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.836);
+    z-index: 99999;
+}
+
+.image_inform{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(192, 12, 12);
+    width: 23rem;
+    height: 9rem;
+    border-radius: 20px 20px 0 0;
+    padding: .5rem;
+}
+
+.image_inform div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 6em;
+    height: 6rem;
+    background-color: rgba(51, 1, 1, 0.39);
+    border-radius: 100%;
+    animation: alert 1s ease infinite;
+}
+
+#icon{
+    color: #fff;
+    font-size: 4em;
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 23rem;
+    height: 9rem;
+    background-color: #fff;
+    border-radius: 0 0 20px 20px;
+    padding: .5rem;
+}
+
+
+.button_container{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 15em;
+    height: 3em;
+}
+
+.button_container button{
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    width: 8em;
+    height: 2.5em;
+}
+
+.confirm_button{
+    background-color: green;
+    color: #fff;
+    font-weight: bold;
+}
+
+.confirm_button:hover{
+    background-color: rgb(5, 202, 5);
+}
+
+.cancel_button{
+    color: #000;
+    font-weight: bold;
+}
+
+.container p{
+    color: #000;
+    text-align: center;
+    font-weight: bold;
+}
+
+@keyframes alert {
+    0% {
+      transform: scale(0.95);
+      box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.7);
+    }
+
+    70% {
+      transform: scale(1);
+      box-shadow: 0 0 0 10px rgba(252, 78, 78, 0);
+    }
+
+    100% {
+      transform: scale(0.95);
+      box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+    }
+  }

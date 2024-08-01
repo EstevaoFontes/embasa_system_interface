@@ -1,0 +1,53 @@
+.container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    width: 100%;
+}
+
+.search {
+    display: flex;
+    width: 800px;
+    height: 5rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.search input {
+    width: 450px;
+    height: 2rem;
+    padding: 8px;
+    border-radius: 5px 0 0 5px;
+}
+
+.button_search{
+    height: 2rem;
+    width: 2rem;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+    border: none;
+    background-color: #1c8701;
+}
+
+.button_search i{
+    color: #fff;
+}
+
+#nova_estacao{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 9rem;
+    padding: 5px;
+    font-size: .8em;
+    position: absolute;
+    left: 1rem;
+    top: 0;
+}
+
+.empty{
+    color: #9d9494;
+}

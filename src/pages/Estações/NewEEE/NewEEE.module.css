@@ -1,0 +1,106 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.container h1{
+    text-align: center;
+}
+
+.container_float {
+    display: flex;
+    flex-direction: column;
+    border: 0.5px solid rgb(218, 218, 218);
+    border-radius: 20px;
+    min-width: 40rem;
+    padding: 10px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    background-color: #fff;
+}
+
+.action {
+    height: 1rem;
+    width: 10rem;
+    top: 300px;
+}
+
+.container_button {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    width: 13rem;
+    bottom: 100px;
+    margin: auto;
+    margin-top: 20px;
+}
+
+.btn_back {
+    background-color: transparent;
+    color: #1c8701;
+    font-weight: bold;
+    width: 80px;
+    height: 35px;
+    border: 1px solid #1c8701;
+    border-radius: 2px;
+    cursor: pointer;
+    font-size: 15px;
+    margin-bottom: 1em;
+    border-radius: 10px;
+}
+
+.btn_back i {
+    color: #1c8701;
+}
+
+.btn_next {
+    background-color: transparent;
+    color: #011a87;
+    font-weight: bold;
+    width: 90px;
+    height: 35px;
+    border: 1px solid #011a87;
+    border-radius: 2px;
+    cursor: pointer;
+    font-size: 15px;
+    margin-bottom: 1em;
+    border-radius: 10px;
+}
+
+.btn_next i {
+    color: #011a87;
+}
+
+#icon_save {
+    margin-left: 2px;
+}
+
+.btn_back:hover,
+.btn_back:hover i{
+    background-color: #1c8701;
+    color: #fff;
+}
+
+.btn_next:hover,
+.btn_next:hover i{
+    background-color: #011a87;
+    color: #fff;
+}
+
+.btn_back:disabled{
+    background-color: #ccc;
+    cursor: not-allowed;
+    color: #979797;
+}
+
+.btn_back i:disabled{
+    color: #979797;
+}
+
+
+.btn_next:disabled{
+    background-color: #ccc;
+    cursor: not-allowed;
+    color: #979797;
+}

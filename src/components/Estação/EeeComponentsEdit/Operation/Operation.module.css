@@ -1,0 +1,24 @@
+.table{
+    width: 50rem;
+    margin-bottom: 1rem;
+}
+
+
+.table thead{
+    background-color: rgb(3, 3, 101);
+    color: #fff;
+}
+
+tbody > tr:nth-of-type(even) {
+    background-color: #fff;
+}
+
+.table textarea{
+    width: 310px;
+    height: 35px;
+}
+
+img{
+    width: 300px;
+    height: auto;
+}

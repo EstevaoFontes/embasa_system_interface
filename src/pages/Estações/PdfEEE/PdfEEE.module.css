@@ -1,0 +1,12 @@
+.loading{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 5rem;
+}
+
+.container_pdf{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

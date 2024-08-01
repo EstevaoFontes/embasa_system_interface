@@ -1,0 +1,85 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 5% auto;
+    background-color: #000055;
+    color: #fff;
+    padding: 20px;
+    width: 23.5rem;
+    height: 20rem;
+}
+
+.container form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.container h1 {
+    margin: 0;
+}
+
+
+.container input {
+    width: 20rem;
+    height: 25px;
+    border: none;
+}
+
+.container div {
+    position: relative;
+    max-height: 3rem;
+    margin-bottom: 2.5rem;
+}
+
+.container input:focus {
+    outline: none;
+}
+
+.linkCadastro {
+    color: white;
+    font-size: 15px;
+    margin-top: 10px;
+}
+
+.forgot_password {
+    position: absolute;
+    color: #fff;
+    font-size: 13px;
+    margin-top: 5px;
+    right: 0;
+}
+
+i {
+    position: relative;
+    color: black;
+}
+
+
+input+i::before {
+    position: absolute;
+    right: 10px;
+    top: 4px;
+}
+
+.error{
+    position: absolute;
+    left: 0;
+    width: 10rem;
+    height: 1rem;
+    margin-top: 4px;
+}
+
+.links_error{
+    display: flex;
+    gap: 3rem;
+}
+
+#button span{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

@@ -1,0 +1,36 @@
+.container_att {
+    display: flex;
+    align-items: center;
+    position: relative;
+    width: auto;
+}
+
+.input_att {
+    width: 37rem;
+    background-color: #fff;
+    margin-bottom: 1rem;
+}
+
+.remove {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 1.2rem;
+    width: 1.2rem;
+    border: none;
+    border-radius: 100%;
+    background-color: rgba(255, 0, 0, 0.205);
+    cursor: pointer;
+    position: absolute;
+    right: 1rem;
+    top: 0.8rem;
+}
+
+.remove i {
+    color: #fff;
+    font-size: 1.1em;
+}
+
+.remove:hover {
+    background-color: red;
+}

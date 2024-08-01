@@ -1,0 +1,132 @@
+.btn{
+    background: linear-gradient(144deg, #af40ff, #5b42f3 50%, #00ddeb );
+    color: #fff;
+    font-weight: bold;
+    width: 21rem;
+    height: 2.3rem;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    border-radius: 5px;
+}
+
+.btn_custom2 {
+    background-color: #1c8701;
+    color: #fff;
+    border: none;
+    font-weight: bold;
+    width: 380px;
+    height: 40px;
+    cursor: pointer;
+    font-size: 18px;
+    border-radius: 5px;
+}
+
+.btn_custom2:hover {
+    background-color: #54af3e;
+    border: none;
+    color: #fff;
+
+}
+
+.btn_custom3 {
+    background-color: red;
+    color: #fff;
+    border: none;
+    font-weight: bold;
+    width: 380px;
+    height: 2.5rem;
+    cursor: pointer;
+    font-size: 18px;
+    border-radius: 5px;
+}
+
+.btn_custom3:hover {
+    background-color: rgb(218, 80, 80);
+    border: none;
+    color: #fff;
+
+}
+
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+input {
+    height: 1.5rem;
+    border: 1px solid rgb(94, 94, 94);
+    border-radius: 5px;
+    background-color: #ffff;
+    padding: 8px;
+}
+
+textarea {
+    border: 1px solid rgb(94, 94, 94);
+    border-radius: 5px;
+    background-color: #fff;
+    padding: 0.5rem;
+    resize: none;
+    margin-bottom: .5em;
+}
+
+input:focus,
+textarea:focus {
+    outline: none;
+    border-color: blue;
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: #757373;
+}
+
+label {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1em;
+}
+
+label span {
+    margin-bottom: 0.3em;
+    font-weight: bold;
+    text-align: left;
+}
+
+select {
+    height: 2rem;
+    border: 1px solid rgb(94, 94, 94);
+    border-radius: 5px;
+    background-color: transparent;
+    padding: 0.3rem;
+}
+
+button[disabled] {
+    background-color: #8686869d;
+    cursor: not-allowed;
+    border: none;
+    color: #fff;
+}
+
+button[disabled]:hover {
+    background-color: #8686869d;
+}
+
+.container input[disabled] {
+    background-color: #ccc;
+    border: none;
+}
+
+.container textarea[disabled] {
+    background-color: #ccc;
+    border: none;
+}
+
+td{
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #ccc;
+    text-align: center;
+    padding: 8px;
+  }

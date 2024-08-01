@@ -1,0 +1,15 @@
+.check{
+    display: flex;
+    align-items: center;
+}
+
+.check input{
+    width: 28px;
+    border: none;
+    margin-bottom: 1rem;
+}
+
+.check span{
+    text-align: center;
+    margin-left: 1rem;
+}

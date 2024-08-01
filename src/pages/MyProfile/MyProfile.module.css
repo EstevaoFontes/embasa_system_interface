@@ -1,0 +1,52 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.container input{
+    width: 23rem;
+}
+
+.container_loading{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 15rem;
+}
+
+
+.information_profile{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    & h1{
+        margin: 1rem 0 1rem 0;
+    }
+
+    & span{
+        font-weight: bold;
+        margin-bottom: .5rem;
+    }
+}
+
+.email {
+    display: flex;
+    align-items: center;
+    font-size: smaller;
+    color: #5c5757;
+    background-color: #ccc;
+    border-radius: 5px;
+    padding: 8px;
+    height: 1.8rem;
+}
+
+.email_information {
+    font-size: smaller;
+    margin-left: .2rem;
+    color: #5c5757;
+}

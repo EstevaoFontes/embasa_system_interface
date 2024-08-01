@@ -1,0 +1,86 @@
+.container_image{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.image{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border-radius: 5px 0 0 5px ;
+}
+
+.image_lazy{
+    width: 14rem;
+    height: 16rem;
+}
+
+.no_image{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px dashed black;
+    border-radius: 5px 0 0 5px ;
+    text-align: center;
+    width: 19rem;
+    height: 15rem;
+}
+
+.no_image i{
+    font-size: 3.5rem;
+}
+
+.no_image span{
+    font-size: small;
+    margin-bottom: 0.5rem;
+}
+
+.strong{
+    cursor: pointer;
+    color: green;
+}
+
+.button_next_image{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 1.3rem;
+    height: 3rem;
+    border: none;
+    cursor: pointer;
+    border-radius: 10px 0 0 10px;
+    position: absolute;
+    right: 0rem;
+    background-color: #000000bf;
+}
+
+.button_back_image{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 1.3rem;
+    height: 3rem;
+    border: none;
+    border-radius: 0 10px 10px 0;
+    cursor: pointer;
+    position: absolute;
+    left: 0rem;
+    background-color: #000000bf;
+}
+
+.button_next_image i,
+.button_back_image i{
+ font-size: 1.3em;
+ color: #fff;
+}
+
+
+.button_back_image:hover,
+.button_next_image:hover{
+    background-color: grey;
+}   

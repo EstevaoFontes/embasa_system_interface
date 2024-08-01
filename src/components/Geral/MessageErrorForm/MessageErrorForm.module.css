@@ -1,0 +1,20 @@
+.container{
+    width: auto;
+    height: 0px;
+    margin: 0;
+}
+
+.container i{
+    margin-right: 5px;
+}
+
+#errors{
+    font-size: smaller;
+    color: red;
+}
+
+#errors_white{
+    font-size: smaller;
+    color: #fff;
+}
+
