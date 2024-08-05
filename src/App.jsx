@@ -29,7 +29,8 @@ function App() {
 
   const { user, permissions, authorization } = useAuth()
 
-  if (user.funcao === 'Visitante' || user.funcao === 'Manutenção') {
+
+  if (user.funcao === 'Visitante') {
     return (
       <BrowserRouter>
         <ToastContainer
@@ -69,6 +70,61 @@ function App() {
               <Route
                 path='/myProfile'
                 element={authorization ? <MyProfile /> : <Navigate to='/login' />}
+              />
+
+            </Routes>
+          </div>
+          <Footer />
+        </div>
+      </BrowserRouter>
+    )
+  }
+
+  if (user.funcao === 'Manutenção') {
+    return (
+      <BrowserRouter>
+        <ToastContainer
+          position='bottom-left'
+          autoClose={3000}
+          hideProgressBar={false}
+          closeOnClick
+          pauseOnHover
+          theme='dark'
+          transition={Flip}
+        />
+        <div className='App'>
+          <Navbar />
+          <div className="container">
+            <Routes>
+
+              <Route
+                path='/login'
+                element={!authorization ? <Login /> : <Navigate to='/planilha' />}
+              />
+
+              <Route
+                path='/login/register'
+                element={!authorization ? <Register /> : <Navigate to='/planilha' />}
+              />
+
+              <Route
+                path='/login/forgotPassword'
+                element={!authorization ? <ForgotPassword /> : <Navigate to='/planilha' />}
+              />
+
+              <Route
+                path='/planilha'
+                element={authorization ? <Planilha /> : <Navigate to='/login' />}
+              />
+
+              <Route
+                path='/myProfile'
+                element={authorization ? <MyProfile /> : <Navigate to='/login' />}
+              />
+
+              <Route
+                path='/'
+                element={authorization ? <Chamados /> : <Navigate to='/login' />}
               />
 
             </Routes>

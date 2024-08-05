@@ -152,6 +152,7 @@ const Chamados = () => {
                     id={styles.button_new_called}
                     className='btn_custom2'
                     onClick={() => navigate('./newCalled')}
+                    disabled={user.funcao === 'Manutenção'}
                 >
                     <span>Novo chamado</span>
                 </button>
@@ -185,7 +186,7 @@ const Chamados = () => {
                 </abbr>
 
                 <button className={styles.botao_planilha} onClick={() => navigate('/planilha')}>
-                    <span>Registros PPCM</span>
+                    <span>Chamados PPCM</span>
                 </button>
 
             </div>

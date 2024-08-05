@@ -13,32 +13,32 @@ const NavBar = () => {
 
     return (
         <div className={styles.nav}>
-            <span className={styles.sistem_name}>Plataforma Distribuída de Informações</span>
+            <span className={styles.sistem_name}>Sistema de Informação ERA</span>
             <nav>
                 {authorization && (
                     <ul className={styles.links_list}>
 
-                        {(user.funcao !== 'Manutenção' && user.funcao !== 'Visitante') && (
-                            <>
-                                <li>
-                                    <NavLink to='/' className={({ isActive }) => (isActive ? styles.active : "")}>
-                                        <span>Chamados</span>
-                                    </NavLink>
-                                </li>
+                        {user.funcao !== 'Visitante' && (
+                            <li>
+                                <NavLink to='/' className={({ isActive }) => (isActive ? styles.active : "")}>
+                                    <span>Chamados MPEE</span>
+                                </NavLink>
+                            </li>
+                        )}
 
-                                <li>
-                                    <abbr title="Estação Elevatória de Esgoto">
-                                        <NavLink className={({ isActive }) => (isActive ? styles.active : "")} to='/eee'>
-                                            <span>Estações</span>
-                                        </NavLink>
-                                    </abbr>
-                                </li>
-                            </>
+                        {(user.funcao !== 'Manutenção' && user.funcao !== 'Visitante') && (
+                            <li>
+                                <abbr title="Estação Elevatória de Esgoto">
+                                    <NavLink className={({ isActive }) => (isActive ? styles.active : "")} to='/eee'>
+                                        <span>Estações</span>
+                                    </NavLink>
+                                </abbr>
+                            </li>
                         )}
 
                         <li>
                             <NavLink to='/planilha' className={({ isActive }) => (isActive ? styles.active : "")}>
-                                <span>Registros PPCM</span>
+                                <span>Chamados PPCM</span>
                             </NavLink>
                         </li>
 

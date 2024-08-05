@@ -183,11 +183,13 @@ const OnCalled = ({ data, setModalHistoric, setModalFinish, setInfoModal }) => {
 
                         {
                             data?.isActive && (
-                                <li>
-                                    <button onClick={() => navigate(`/calledEdit/${data.id}`)}>
-                                        <span>Editar</span>
-                                    </button>
-                                </li>
+                                permissions.called_finish.includes(user?.funcao) && (
+                                    <li>
+                                        <button onClick={() => navigate(`/calledEdit/${data.id}`)}>
+                                            <span>Editar</span>
+                                        </button>
+                                    </li>
+                                )
                             )
                         }
 

@@ -4,7 +4,7 @@ import { useAuth } from '../../../context/AuthProvider';
 
 const ComponentsItems = ({ registro, modalEditar, modalExcluir, modalFinalzar, modalInfo }) => {
 
-    const { user } = useAuth()
+    const { user, permissions } = useAuth()
 
     const [searchParams, setSearchParams] = useSearchParams()
 
@@ -62,43 +62,46 @@ const ComponentsItems = ({ registro, modalEditar, modalExcluir, modalFinalzar, m
 
                     <ul className={styles.options}>
 
-                        {user.funcao === 'Visitante' || registro.isActive === false ? (
-                            <></>
-                        ) : (
-                            <li>
-                                <button onClick={() => handleOpenModalEditar()}>
-                                    <span>Editar</span>
-                                </button >
-                            </li>
-                        )}
-
                         <li>
                             <button onClick={() => handleOpenModalInfo()}>
                                 <span>Informações</span>
                             </button >
                         </li>
 
-                        {user.funcao === 'Visitante' || registro.isActive === false ? (
-                            <></>
-                        ) : (
-                            <li>
-                                <button onClick={() => handleOpenModalFinalizar()}>
-                                    <span>Finalizar</span>
-                                </button>
-                            </li>
+                        {permissions.area_manutencao_called.includes(user.funcao) && (
+                            <>
+                                {registro.isActive === false ? (
+                                    <></>
+                                ) : (
+                                    <li>
+                                        <button onClick={() => handleOpenModalEditar()}>
+                                            <span>Editar</span>
+                                        </button >
+                                    </li>
+                                )}
+
+
+                                {registro.isActive === false ? (
+                                    <></>
+                                ) : (
+                                    <li>
+                                        <button onClick={() => handleOpenModalFinalizar()}>
+                                            <span>Finalizar</span>
+                                        </button>
+                                    </li>
+                                )}
+
+                                {registro.isActive === false ? (
+                                    <></>
+                                ) : (
+                                    <li>
+                                        <button onClick={() => excluirLinha()}>
+                                            <span>Excluir</span>
+                                        </button >
+                                    </li>
+                                )}
+                            </>
                         )}
-
-                        {user.funcao === 'Visitante' || registro.isActive === false ? (
-                            <></>
-                        ) : (
-                            <li>
-                                <button onClick={() => excluirLinha()}>
-                                    <span>Excluir</span>
-                                </button >
-                            </li>
-                        )}
-
-
                     </ul>
                 </>
             </td >

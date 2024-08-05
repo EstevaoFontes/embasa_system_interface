@@ -11,7 +11,7 @@ export const useAuthorization = () => {
     const permissions = {
         pages: ['Gerente'],
         called_finish: ['Gerente', 'Sala de Controle'],
-        edit_called: ['Gerente'],
+        edit_called: ['Gerente', 'Sala de Controle'],
         area_manutencao_called: ['Gerente', 'Manutenção'],
         information_called_manutencao: ['Manutenção'],
         nova_estacao: ['Gerente']
