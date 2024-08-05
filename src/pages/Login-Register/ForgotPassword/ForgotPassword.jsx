@@ -13,10 +13,10 @@ const schema = yup.object().shape({
             .email('Insira um E-mail valido')
             .required('Campo Obrigatório')
 });
-
-function handleSubmitData(data) {
-    console.log(data)
-}
+// fazer função logo
+// function handleSubmitData(data) {
+//     console.log(data)
+// }
 
 const ForgotPassword = () => {
 

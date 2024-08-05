@@ -10,8 +10,6 @@ import { calcula_hora_hoje, calcula_hora_com_data_final_dataJS } from '../../../
 
 const OnCalled = ({ data, setModalHistoric, setModalFinish, setInfoModal }) => {
 
-    console.log(data)
-
     const [searchParams, setSearchParams] = useSearchParams()
     const [hoursCalculated, setHoursCalculated] = useState()
 

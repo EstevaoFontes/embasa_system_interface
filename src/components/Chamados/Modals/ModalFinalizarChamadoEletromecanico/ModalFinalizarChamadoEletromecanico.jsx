@@ -33,7 +33,6 @@ const ModalFinalizarChamadoEletromecanico = ({ openModalFinalizar, getData }) =>
             if (indevido) {
                 await fetchData('chamadosEletromecanicos/indevidoCalled', 'PATCH', data, null, token)
             } else {
-                console.log("🚀 ~ handleSubmitData ~ data:", data)
                 await fetchData('chamadosEletromecanicos/finishCalled', 'PATCH', data, null, token)
             }
 
