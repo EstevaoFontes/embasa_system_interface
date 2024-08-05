@@ -111,6 +111,10 @@
   width: 100%;
 }
 
+#indevido{
+  background-color: #908e8e;
+}
+
 .items_components:hover {
   & .button {
     display: flex;
@@ -230,6 +234,15 @@
   background-color: rgb(84, 221, 5);
   animation: stable 1s linear infinite;
 }
+
+.indevido_status {
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  background-color: #ccc;
+  animation: stable 1s linear infinite;
+}
+
 
 .status {
   display: flex;

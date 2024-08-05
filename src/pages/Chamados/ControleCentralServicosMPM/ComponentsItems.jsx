@@ -2,7 +2,7 @@ import styles from './ControleCentralServicosMPM.module.css';
 import { useSearchParams } from 'react-router-dom';
 import { useAuth } from '../../../context/AuthProvider';
 
-const ComponentsItems = ({ registro, modalEditar, modalExcluir, modalFinalzar }) => {
+const ComponentsItems = ({ registro, modalEditar, modalExcluir, modalFinalzar, modalInfo }) => {
 
     const { user } = useAuth()
 
@@ -18,29 +18,29 @@ const ComponentsItems = ({ registro, modalEditar, modalExcluir, modalFinalzar })
         modalEditar(state => !state)
     }
 
-    
+
     function handleOpenModalFinalizar() {
         setSearchParams({ 'id': registro.id })
         modalFinalzar(state => !state)
     }
 
-    function verificar_data_final() {
-        if (registro.data_hora_fim.length > 0) {
-            return true
-        } else {
-            return false
-        }
+    function handleOpenModalInfo() {
+        setSearchParams({ 'id': registro.id })
+        modalInfo(state => !state)
     }
 
     return (
-        <tr className={styles.items_components}>
+        <tr className={styles.items_components} id={registro.indevido && styles.indevido}>
 
             <td >
                 <div className={styles.status}>
                     <span style={{ display: 'none' }}>
-                        {verificar_data_final() ? 'Finalizado' : 'Pendente'}
+                        {registro.isActive ? 'Finalizado' : 'Pendente'}
+                        {registro.isActive == false && registro.indevido && 'Indevido'}
                     </span>
-                    <div className={verificar_data_final() ? styles.normal : styles.urgent}></div>
+                    <div className={registro.isActive && styles.urgent}></div>
+                    <div className={!registro.isActive && !registro.indevido && styles.normal}></div>
+                    <div className={!registro.isActive && registro.indevido && styles.indevido_status}></div>
                 </div>
             </td>
 
@@ -57,40 +57,54 @@ const ComponentsItems = ({ registro, modalEditar, modalExcluir, modalFinalzar })
 
             <td id={styles.dropdown_active}>
 
-                {user.funcao === 'Visitante' || registro.isActive === false ? (
-                    <i className="bi bi-ban" style={{ cursor: 'not-allowed' }}></i>
-                ) : (
-                    <>
-                        <i id={styles.dropdown} className={'bi bi-three-dots-vertical'}></i>
+                <>
+                    <i id={styles.dropdown} className={'bi bi-three-dots-vertical'}></i>
 
-                        <ul className={styles.options}>
+                    <ul className={styles.options}>
 
+                        {user.funcao === 'Visitante' || registro.isActive === false ? (
+                            <></>
+                        ) : (
                             <li>
                                 <button onClick={() => handleOpenModalEditar()}>
                                     <span>Editar</span>
                                 </button >
                             </li>
+                        )}
 
+                        <li>
+                            <button onClick={() => handleOpenModalInfo()}>
+                                <span>Informações</span>
+                            </button >
+                        </li>
+
+                        {user.funcao === 'Visitante' || registro.isActive === false ? (
+                            <></>
+                        ) : (
                             <li>
                                 <button onClick={() => handleOpenModalFinalizar()}>
                                     <span>Finalizar</span>
                                 </button>
                             </li>
+                        )}
 
+                        {user.funcao === 'Visitante' || registro.isActive === false ? (
+                            <></>
+                        ) : (
                             <li>
                                 <button onClick={() => excluirLinha()}>
                                     <span>Excluir</span>
                                 </button >
                             </li>
-
-                        </ul>
-                    </>
-                )}
-
-            </td>
+                        )}
 
 
-        </tr>
+                    </ul>
+                </>
+            </td >
+
+
+        </tr >
     )
 }
 

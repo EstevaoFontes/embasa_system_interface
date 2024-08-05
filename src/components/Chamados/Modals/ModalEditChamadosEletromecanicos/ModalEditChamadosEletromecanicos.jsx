@@ -1,5 +1,4 @@
 import styles from './ModalEditChamadosEletromecanicos.module.css'
-import motivos from '../../../../assets/Motivos'
 import classe_de_sintomas from '../../../../assets/sintomas';
 
 // COMPONENT
@@ -15,18 +14,16 @@ import { useState } from 'react';
 
 const ModalEditChamadosEletromecanicos = ({ setOpenModalEditar, getData }) => {
 
-    const [openSintomas, setOpenSintomas] = useState(false)
-    
     const token = JSON.parse(localStorage.getItem('token'))
-    
+
     const { fetchData, loading, data } = useApi()
-    
-    const { handleSubmit, setValue, register, getValues } = useForm()
-    
+
+    const { handleSubmit, setValue, register, unre } = useForm()
+
     const [searchParams] = useSearchParams()
-    
+
     const id = searchParams.get('id')
-    
+
     const [sintomas, setSintomas] = useState('')
     const [descricao, setDescricao] = useState('')
 
@@ -39,7 +36,6 @@ const ModalEditChamadosEletromecanicos = ({ setOpenModalEditar, getData }) => {
             await fetchData('chamadosEletromecanicos/editCalled', 'PATCH', data, null, token)
             await getData()
             setOpenModalEditar(state => !state)
-            console.log(data)
         } catch (error) {
             throw error
         }
@@ -52,23 +48,10 @@ const ModalEditChamadosEletromecanicos = ({ setOpenModalEditar, getData }) => {
             throw error
         }
     }
-
-
-    function filtrar_esgoto() {
-        const palavrasChave = ['e.e', 'ecp', 'ete'];
-
-        if (data?.instalacao) {
-            const instalacaoLower = data.instalacao.toLowerCase();
-            const contemPalavraChave = palavrasChave.some(palavra => instalacaoLower.includes(palavra));
-
-            return contemPalavraChave
-        } else {
-            return false
-        }
-    }
-
+    
     useEffect(() => {
         buscarUnicoChamado()
+
         return
     }, [])
 
@@ -76,7 +59,7 @@ const ModalEditChamadosEletromecanicos = ({ setOpenModalEditar, getData }) => {
         Object.keys(data).forEach(item => {
             setValue(item, data[item])
 
-            if(item === 'sintomas'){
+            if (item === 'sintomas') {
                 setSintomas(data[item])
             }
         })
@@ -96,22 +79,24 @@ const ModalEditChamadosEletromecanicos = ({ setOpenModalEditar, getData }) => {
 
                         <label>
                             <span>Data início</span>
-                            <InputMask
+                            {/* <InputMask
                                 mask={'99/99/9999'}
                                 alwaysShowMask
                                 maskChar={null}
                                 {...register('data_inicio')}
-                            />
+                            /> */}
+                             <input type="text" {...register('data_inicio')} disabled/>
                         </label>
 
                         <label>
                             <span>Hora início</span>
-                            <InputMask
+                            {/* <InputMask
                                 mask={'99:99'}
                                 alwaysShowMask
                                 maskChar={null}
                                 {...register('hora_inicio')}
-                            />
+                            /> */}
+                            <input type="text" {...register('hora_inicio')} disabled/>
                         </label>
 
                         <label>
@@ -150,6 +135,7 @@ const ModalEditChamadosEletromecanicos = ({ setOpenModalEditar, getData }) => {
                             <input
                                 type="text"
                                 {...register('nota_mpm')}
+                                disabled
                             />
                         </label>
 
@@ -191,55 +177,49 @@ const ModalEditChamadosEletromecanicos = ({ setOpenModalEditar, getData }) => {
                             />
                         </label>
 
-                        {filtrar_esgoto() && (
-                            <>
-                                <label>
-                                    <span>O Nível de Extravasamento foi Atingido ?</span>
+                        <label>
+                            <span>Sintomas:</span>
+                            <select onClick={(e) => setSintomas(e.target.value)} {...register('sintomas')}>
+                                <option value=""></option>
+                                {Object.keys(classe_de_sintomas).map((sintoma, index) => (
+                                    <option
+                                        key={index}
+                                        value={sintoma}
+                                    >
+                                        {sintoma}
+                                    </option>
+                                ))}
+                            </select>
+                        </label>
 
-                                    <select {...register('extravasamento')}>
+                        <label>
+                            <span>Descrição do Sintoma:</span>
+                            <select {...register('descricao_sintomas')} onClick={(e) => setDescricao(e.target.value)}>
+                                <option value=""></option>
+                                {sintomas && classe_de_sintomas[sintomas].map((descricao, index) => (
+                                    <option
+                                        key={index}
+                                        value={descricao}
+                                    >
+                                        {descricao}
+                                    </option>
+                                ))}
+                            </select>
+                        </label>
 
-                                        <option value=""></option>
-                                        <option value={true}>Atingiu</option>
-                                        <option value={false}>Não Atingiu</option>
+                        <label>
+                            <span>O Nível de Extravasamento foi Atingido ?</span>
 
-                                    </select>
-                                </label>
+                            <select {...register('extravasamento')}>
 
-                                <label>
-                                    <span>Sintomas:</span>
-                                    <select onClick={(e) => setSintomas(e.target.value)} {...register('sintomas')}>
-                                        <option value=""></option>
-                                        {Object.keys(classe_de_sintomas).map((sintoma, index) => (
-                                            <option
-                                                key={index}
-                                                value={sintoma}
-                                            >
-                                                {sintoma}
-                                            </option>
-                                        ))}
-                                    </select>
-                                </label>
+                                <option value=""></option>
+                                <option value={false}>Não se Aplica</option>
+                                <option value={true}>Atingiu</option>
+                                <option value={false}>Não Atingiu</option>
 
-                                <label>
-                                    <span>Descrição do Sintoma:</span>
-                                    <select {...register('descricao_sintomas')} onClick={(e) => setDescricao(e.target.value)}>
-                                        <option value=""></option>
-                                        {sintomas && classe_de_sintomas[sintomas].map((descricao, index) => (
-                                            <option
-                                                key={index}
-                                                value={descricao}
-                                            >
-                                                {descricao}
-                                            </option>
-                                        ))}
-                                    </select>
-                                </label>
+                            </select>
+                        </label>
 
-
-
-
-                            </>
-                        )}
 
                         {loading ? (
                             <div

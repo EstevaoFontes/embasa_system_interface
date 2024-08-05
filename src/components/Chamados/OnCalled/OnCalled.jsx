@@ -10,11 +10,14 @@ import { calcula_hora_hoje, calcula_hora_com_data_final_dataJS } from '../../../
 
 const OnCalled = ({ data, setModalHistoric, setModalFinish, setInfoModal }) => {
 
+    console.log(data)
+
     const [searchParams, setSearchParams] = useSearchParams()
     const [hoursCalculated, setHoursCalculated] = useState()
 
     const [showDescriptionExtravasando, setShowDescriptionExtravasando] = useState(false)
     const [showDescriptionMotivos, setShowDescriptionMotivos] = useState(false)
+    const [showDescriptionFinalizado, setShowDescriptionFinalizado] = useState(false)
 
     const { user, permissions } = useAuth()
 
@@ -26,7 +29,7 @@ const OnCalled = ({ data, setModalHistoric, setModalFinish, setInfoModal }) => {
 
     function analise_divergencias_extravasamento() {
 
-        if(data.chamado_eletromecanico?.extravasamento == undefined){
+        if (data.chamado_eletromecanico?.extravasamento == undefined) {
             return
         }
 
@@ -89,22 +92,24 @@ const OnCalled = ({ data, setModalHistoric, setModalFinish, setInfoModal }) => {
                             </>
                         )}
 
-                        {/* {data.chamado_eletromecanico?.extravasamento && data.extravasando !== data.chamado_eletromecanico?.extravasamento && (
+                        {data.chamado_eletromecanico?.isActive == false && (
                             <>
                                 <i
                                     className='bi bi-flag-fill'
-                                    id={styles.flag_motivos}
-                                    onMouseEnter={() => setShowDescriptionMotivos(true)}
-                                    onMouseLeave={() => setShowDescriptionMotivos(false)}
+                                    id={styles.flag_finalizacao}
+                                    onMouseEnter={() => setShowDescriptionFinalizado(true)}
+                                    onMouseLeave={() => setShowDescriptionFinalizado(false)}
                                 >
                                     <div
-                                        className={showDescriptionMotivos ? styles.flag_information_show : styles.flag_information_none}
+                                        className={showDescriptionFinalizado ? styles.flag_information_show : styles.flag_information_none}
                                     >
-                                        <p>Divergências nos Motivos/Sintomas.</p>
+                                        <p>A Eletromecânica finalizou o chamado!</p>
                                     </div>
                                 </i>
                             </>
-                        )} */}
+                        )}
+
+
 
                         {data.isActive && (
                             <abbr title={data.extravasando === true ? 'Urgente' : 'Estável'}>
@@ -124,7 +129,7 @@ const OnCalled = ({ data, setModalHistoric, setModalFinish, setInfoModal }) => {
                 <td
                     className={data.indevido ? styles.td_indevido : ""}
                 >
-                    {data.ordemServico}
+                    {data.notaPM}
                 </td>
 
                 <td

@@ -13,7 +13,7 @@ const NavBar = () => {
 
     return (
         <div className={styles.nav}>
-            <span className={styles.sistem_name}>Sistema Eletrônico de Controle de Estações.</span>
+            <span className={styles.sistem_name}>Plataforma Distribuída de Informações</span>
             <nav>
                 {authorization && (
                     <ul className={styles.links_list}>

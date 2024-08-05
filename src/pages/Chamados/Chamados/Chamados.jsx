@@ -31,7 +31,17 @@ const Chamados = () => {
 
     const filteredCalls = search.length > 0 && data.filter(call => {
         if (filterChosen.length > 0) {
-            return call[filterChosen].toString().toLocaleLowerCase().includes(search.toString().toLocaleLowerCase())
+            if (filterChosen === 'unidade') {
+                return call.estacao?.nome_estacao.toLocaleLowerCase().includes(search.toLocaleLowerCase())
+            }
+
+            if (filterChosen === 'operador') {
+                return call.estacao?.nome_estacao.toLocaleLowerCase().includes(search.toLocaleLowerCase())
+            }
+
+            return call[filterChosen].toLocaleLowerCase().includes(search.toLocaleLowerCase())
+
+
         } else {
             setSearch("")
             return
@@ -148,10 +158,11 @@ const Chamados = () => {
 
                 <select onChange={(e) => setFilterChosen(e.target.value)}>
                     <option value=''>Sem filtro</option>
+                    {/* melhorar lógica para buscar o operador que é agora é uma chave extrangeira */}
                     <option value="operador">Operador</option>
                     <option value="unidade">Unidade</option>
                     <option value="motivo">Motivo</option>
-                    <option value="ordemServico">OS</option>
+                    <option value="notaPM">Nota PM</option>
                 </select>
 
                 <i
@@ -190,7 +201,7 @@ const Chamados = () => {
                                 {indiceDados === 2 && <i className="bi bi-chevron-down"></i>}
                             </div>
                         </th>
-                        <th>Ordem de Serviço</th>
+                        <th>Nota PM</th>
                         <th>Operador (Sala de controle)</th>
                         <th onClick={() => ordenar_data()}>
                             <div className={styles.data_filtro}>

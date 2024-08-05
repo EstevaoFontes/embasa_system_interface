@@ -6,6 +6,7 @@ import Loading from '../../../components/Geral/Loading/Loading';
 import ModalEditChamadosEletromecanicos from '../../../components/Chamados/Modals/ModalEditChamadosEletromecanicos/ModalEditChamadosEletromecanicos';
 import ModalExcluirChamadoEletromecanico from '../../../components/Chamados/Modals/ModalExcluirChamadoEletromecanico/ModalExcluirChamadoEletromecanico';
 import ModalFinalizarChamadoEletromecanico from '../../../components/Chamados/Modals/ModalFinalizarChamadoEletromecanico/ModalFinalizarChamadoEletromecanico';
+import ModalInfoChamadoEletromecanico from '../../../components/Chamados/Modals/ModalInfoChamadoEletromecanico/ModalInfoChamadoEletromecanico';
 // HOOKS
 import { useForm } from 'react-hook-form';
 import { useEffect, useRef, useState } from 'react';
@@ -21,6 +22,7 @@ const Planilha = () => {
     const [openModalEditar, setOpenModalEditar] = useState(false)
     const [openModalExcluir, setOpenModalExcluir] = useState(false)
     const [openModalFinalizar, setOpenModalFinalizar] = useState(false)
+    const [openModalInfo, setOpenModalInfo] = useState(false)
 
     const { user } = useAuth()
 
@@ -80,7 +82,7 @@ const Planilha = () => {
     }
 
     function filtrar_esgoto() {
-        const palavrasChave = ['e.e', 'ecp', 'ete'];
+        const palavrasChave = ['eee', 'ecp', 'ete'];
 
         const filtro_esgoto_ete = data.filter(registro => {
             const instalacaoLower = registro.instalacao.toLowerCase();
@@ -164,7 +166,7 @@ const Planilha = () => {
                             </label>
 
                             <label>
-                                <span>Nota MPM</span>
+                                <span>Nota PM</span>
                                 <input type="text"  {...register('nota_mpm')} />
                             </label>
 
@@ -206,7 +208,6 @@ const Planilha = () => {
                     <select onChange={(e) => setFilterChosen(e.target.value)}>
                         <option value=''>Sem filtro</option>
                         <option value="instalacao">Instalação</option>
-                        <option value="ordem_servico">OS</option>
                         <option value="nota_mpm">Nota MPM</option>
                         <option value="supervisao">Supervisão</option>
                     </select>
@@ -269,6 +270,7 @@ const Planilha = () => {
                                 modalEditar={setOpenModalEditar}
                                 modalExcluir={setOpenModalExcluir}
                                 modalFinalzar={setOpenModalFinalizar}
+                                modalInfo={setOpenModalInfo}
                             />
                         ))
                     ) : (
@@ -279,6 +281,7 @@ const Planilha = () => {
                                 modalEditar={setOpenModalEditar}
                                 modalExcluir={setOpenModalExcluir}
                                 modalFinalzar={setOpenModalFinalizar}
+                                modalInfo={setOpenModalInfo}
                             />
                         )))}
                 </tbody>
@@ -307,6 +310,12 @@ const Planilha = () => {
                 <ModalFinalizarChamadoEletromecanico
                     openModalFinalizar={setOpenModalFinalizar}
                     getData={getCalleds}
+                />
+            )}
+
+            {openModalInfo && (
+                <ModalInfoChamadoEletromecanico
+                    openModalInfo={setOpenModalInfo}
                 />
             )}
 

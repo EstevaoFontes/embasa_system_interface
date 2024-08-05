@@ -56,11 +56,6 @@ const ItemChamadoEletromecanico = ({ data }) => {
                     </fieldset>
 
                     <fieldset>
-                        <legend>Data Hora Fim</legend>
-                        <p>{data.chamado_eletromecanico?.data_hora_fim}</p>
-                    </fieldset>
-
-                    <fieldset>
                         <legend>Observação</legend>
                         <abbr title={data.observacao}>
                             <p>{data.chamado_eletromecanico?.observacao}</p>
@@ -85,6 +80,11 @@ const ItemChamadoEletromecanico = ({ data }) => {
                     <fieldset>
                         <legend>Criado Por</legend>
                         <p>{data.chamado_eletromecanico?.criado_por?.name}</p>
+                    </fieldset>
+
+                    <fieldset>
+                        <legend>Data Hora Fim</legend>
+                        <p>{data.chamado_eletromecanico?.data_hora_fim}</p>
                     </fieldset>
 
                 </section>

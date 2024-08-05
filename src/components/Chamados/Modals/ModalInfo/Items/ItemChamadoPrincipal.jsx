@@ -18,6 +18,10 @@ const ItemChamadoPrincipal = ({ data }) => {
       {informationCall && (
         <section>
           <fieldset>
+            <legend>Nota PM</legend>
+            <p>{data.notaPM}</p>
+          </fieldset>
+          <fieldset>
             <legend>Ordem de Serviço</legend>
             <p>{data.ordemServico}</p>
           </fieldset>

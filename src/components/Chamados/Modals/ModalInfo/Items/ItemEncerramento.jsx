@@ -29,7 +29,7 @@ const ItemEncerramento = ({ data }) => {
                     </fieldset>
 
                     <fieldset>
-                        <legend>Tempo total do</legend>
+                        <legend>Tempo total do Chamado Aberto:</legend>
                         <p>{`${calcula_hora_com_data_final_dataJS(data.createdAt, data.dataEncerramento)} 
                         ${calcula_hora_com_data_final_dataJS(data.createdAt, data.dataEncerramento) <= 1 ? 'Hora' : 'Horas'} `}</p>
                     </fieldset>

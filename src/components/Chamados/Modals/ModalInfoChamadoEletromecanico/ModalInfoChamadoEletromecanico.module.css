@@ -1,0 +1,116 @@
+.background {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.362);
+    z-index: 9999;
+}
+
+.modalInfo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: fixed;
+    width: 60rem;
+    height: 27rem;
+    background-color: #fff;
+    padding: .3rem;
+    border-radius: 20px;
+    animation: modalShow 1s ease;
+}
+
+.modalInfo h2 {
+    margin-bottom: 2rem;
+    color: #000;
+}
+
+.sections {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    align-items: center;
+    background-color: #cccccc90;
+    width: 56rem;
+    height: 1rem;
+    margin-bottom: .5rem;
+    cursor: pointer;
+}
+
+.sections i {
+    cursor: pointer;
+}
+
+.sections:hover {
+    background-color: #ccc;
+}
+
+#button {
+    width: 8rem;
+    border-radius: 20px;
+    margin-top: 1rem;
+}
+
+.information_call{
+    display: grid;
+    grid-template-columns: 1fr;
+    width: 100%;
+}
+
+.container {
+    overflow: auto;
+    height: 20rem;
+
+    &::-webkit-scrollbar {
+        width: .5rem;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: blue;
+        border-radius: 10px;
+        width: .5rem;
+    }
+}
+
+.container p {
+    width: 55rem;
+    height: 1.5rem;
+    font-size: medium;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    color: #000;
+    font-weight: bold;
+}
+
+.container fieldset {
+    display: flex;
+    align-items: center;
+    margin: 0.5rem;
+    border-radius: 10px;
+    height: 2.5rem;
+    width: 10rem;
+    color: #000;
+    border: 1px solid #000;
+    place-self: center;
+}
+
+.container fieldset legend {
+    font-size: .9em;
+}
+
+
+.container abbr {
+    cursor: pointer;
+}
+
+@keyframes modalShow {
+    0% {
+        opacity: 0;
+    }
+}

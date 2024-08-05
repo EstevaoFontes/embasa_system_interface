@@ -4,15 +4,15 @@
     align-items: center;
   }
 
-  .conatainer td{
+  .conatainer td {
     background-color: #fff;
   }
 
-  .conatainer tr:hover{
+  .conatainer tr:hover {
     background-color: #ccc;
   }
 
-  .td_indevido{
+  .td_indevido {
     background-color: rgba(128, 128, 128, 0.675);
     color: #ccc;
   }
@@ -113,8 +113,8 @@
   }
 
   .options li {
-  list-style: none;
-  text-align: center;
+    list-style: none;
+    text-align: center;
   }
 
   .options li button {
@@ -128,7 +128,7 @@
     width: 100%;
   }
 
-   .options button:hover {
+  .options button:hover {
     background-color: #9a989860;
   }
 
@@ -144,7 +144,7 @@
     }
   }
 
-  #flag_extravasando{
+  #flag_extravasando {
     color: red;
     font-size: .5em;
     position: absolute;
@@ -153,7 +153,16 @@
     cursor: pointer;
   }
 
-  #flag_motivos{
+  #flag_motivos {
+    color: blue;
+    font-size: .5em;
+    position: absolute;
+    top: .2em;
+    left: .2em;
+    cursor: pointer;
+  }
+
+  #flag_finalizacao {
     color: blue;
     font-size: .5em;
     position: absolute;
@@ -163,7 +172,7 @@
   }
 
 
-  .flag_information_show{
+  .flag_information_show {
     font-size: 1.2em;
     width: 9rem;
     font-weight: bold;
@@ -174,8 +183,6 @@
     left: .5rem;
   }
 
-  .flag_information_none{
+  .flag_information_none {
     display: none;
   }
-
-  

@@ -82,26 +82,37 @@ const CalledForm = ({ nome_titulo, nome_botao, formAtributes, showField = false 
             </div>
 
             <form onSubmit={handleSubmit(handleSubmitData)}>
+
                 <label>
-                    <span>*Solicitação de Serviço:</span>
+                    <span>Nota PM</span>
 
                     {!data && (
                         <input
                             type="text"
-                            placeholder='Digite a Ordem de Serviço fornecida'
-                            {...register('ordemServico')}
+                            placeholder='Digite a Nota Pm fornecida'
+                            {...register('notaPM')}
                         />
                     )}
 
                     {data && (
                         <input
                             type="text"
-                            value={data && data.ordemServico}
+                            value={data && data.notaPM}
                             disabled
                         />
                     )}
 
-                    {errors?.ordemServico && <MessageErrorForm message={errors.ordemServico.message} />}
+                    {errors?.notaPM && <MessageErrorForm message={errors.notaPM.message} />}
+                </label>
+
+                <label>
+                    <span>*Ordem de Serviço:</span>
+
+                    <input
+                        type="text"
+                        placeholder='Digite a Ordem de Serviço fornecida'
+                        {...register('ordemServico')}
+                    />
 
                 </label>
 

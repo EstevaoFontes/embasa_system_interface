@@ -3,12 +3,11 @@ import { yupResolver } from '@hookform/resolvers/yup';
 
 export const useFormValidator = () => {
 
-
     const schema = yup.object().shape({
 
-        ordemServico:
+        notaPM:
             yup.string()
-                .required('A ordem de serviço é obrigatória.'),
+                .required('A Nota PM é obrigatória.'),
         informadoPor:
             yup.string()
                 .required('O nome de quem informou é obrigatório.'),
