@@ -52,10 +52,10 @@ const NewCalled = () => {
     return (
         <div className={styles.container}>
             <BackButton />
-            <FormChamado 
-            nome_titulo={'Novo Chamado'}
-            nome_botao={'Salvar'}
-            formAtributes={atributes}
+            <FormChamado
+                nome_titulo={'Novo Chamado'}
+                nome_botao={'Salvar'}
+                formAtributes={atributes}
             />
         </div>
     )

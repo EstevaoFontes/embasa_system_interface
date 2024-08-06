@@ -48,7 +48,7 @@ const ModalEditChamadosEletromecanicos = ({ setOpenModalEditar, getData }) => {
             throw error
         }
     }
-    
+
     useEffect(() => {
         buscarUnicoChamado()
 
@@ -79,24 +79,12 @@ const ModalEditChamadosEletromecanicos = ({ setOpenModalEditar, getData }) => {
 
                         <label>
                             <span>Data início</span>
-                            {/* <InputMask
-                                mask={'99/99/9999'}
-                                alwaysShowMask
-                                maskChar={null}
-                                {...register('data_inicio')}
-                            /> */}
-                             <input type="text" {...register('data_inicio')} disabled/>
+                            <input type="text" {...register('data_inicio')}/>
                         </label>
 
                         <label>
                             <span>Hora início</span>
-                            {/* <InputMask
-                                mask={'99:99'}
-                                alwaysShowMask
-                                maskChar={null}
-                                {...register('hora_inicio')}
-                            /> */}
-                            <input type="text" {...register('hora_inicio')} disabled/>
+                            <input type="text" {...register('hora_inicio')}/>
                         </label>
 
                         <label>
@@ -142,7 +130,7 @@ const ModalEditChamadosEletromecanicos = ({ setOpenModalEditar, getData }) => {
                         <label>
                             <span>Ordem de Serviço</span>
 
-                            {data.ordem_servico == false && (
+                            {data.ordem_servico == null && (
                                 <input
                                     type="text"
                                     {...register('ordem_servico')}

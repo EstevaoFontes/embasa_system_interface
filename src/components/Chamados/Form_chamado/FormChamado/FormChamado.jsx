@@ -43,10 +43,13 @@ const CalledForm = ({ nome_titulo, nome_botao, formAtributes, showField = false 
         fields,
         remove,
         addAtualization,
+        getValues
     } = formAtributes
 
     const [unidades, setUnidades] = useState('')
     const unidadeEscolhida = unidades && listaUnidades.filter(unid => unid.nome_estacao.includes(unidades))
+
+    const [chamadoNoturno, setChamadoNoturno] = useState(false)
 
     const obter_dados_estacoes = async () => {
         try {
@@ -73,6 +76,10 @@ const CalledForm = ({ nome_titulo, nome_botao, formAtributes, showField = false 
         obter_dados_estacoes()
     }, [])
 
+    useEffect(() => {
+        setValue('chamado_noturno', chamadoNoturno)
+    }, [chamadoNoturno])
+
     return (
         <div className={styles.container}>
 
@@ -83,18 +90,30 @@ const CalledForm = ({ nome_titulo, nome_botao, formAtributes, showField = false 
 
             <form onSubmit={handleSubmit(handleSubmitData)}>
 
-                <label>
-                    <span>Nota PM</span>
+                <div className={styles.chamado_noturno}>
+                    <span>Chamado Noturno ?</span>
 
-                    {!data && (
+                    <input
+                        type="checkbox"
+                        {...register('chamado_noturno')}
+                        onChange={() => setChamadoNoturno(state => !state)}
+                    />
+
+                </div>
+
+                <label>
+                    <span>*Nota PM</span>
+
+                    {!data?.notaPM && (
                         <input
                             type="text"
                             placeholder='Digite a Nota Pm fornecida'
                             {...register('notaPM')}
+                            required={!chamadoNoturno}
                         />
                     )}
 
-                    {data && (
+                    {data?.notaPM && (
                         <input
                             type="text"
                             value={data && data.notaPM}
@@ -106,7 +125,7 @@ const CalledForm = ({ nome_titulo, nome_botao, formAtributes, showField = false 
                 </label>
 
                 <label>
-                    <span>*Ordem de Serviço:</span>
+                    <span>Ordem de Serviço:</span>
 
                     <input
                         type="text"
@@ -200,16 +219,16 @@ const CalledForm = ({ nome_titulo, nome_botao, formAtributes, showField = false 
                         </section> */}
 
 
-                        <label>
-                            <span>PIPPE</span>
-                        <select
-                            {...register('extravasando')}
-                        >
-                            <option value=""></option>
-                            <option value={true}>ATINGIDO</option>
-                            <option value={false}>NÃO ATINGIDO</option>
-                        </select>
-                        </label>
+                <label>
+                    <span>PIPPE</span>
+                    <select
+                        {...register('extravasando')}
+                    >
+                        <option value=""></option>
+                        <option value={true}>ATINGIDO</option>
+                        <option value={false}>NÃO ATINGIDO</option>
+                    </select>
+                </label>
 
                 <section className={styles.inputs}>
                     <label>
@@ -268,7 +287,7 @@ const CalledForm = ({ nome_titulo, nome_botao, formAtributes, showField = false 
                 )}
 
                 <label>
-                    <span>*Operador (Sala de Controle)</span>
+                    <span>Operador (Sala de Controle)</span>
                     <input
                         type="text"
                         disabled={true}

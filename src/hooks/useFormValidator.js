@@ -5,9 +5,6 @@ export const useFormValidator = () => {
 
     const schema = yup.object().shape({
 
-        notaPM:
-            yup.string()
-                .required('A Nota PM é obrigatória.'),
         informadoPor:
             yup.string()
                 .required('O nome de quem informou é obrigatório.'),

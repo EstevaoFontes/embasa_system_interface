@@ -9,7 +9,7 @@ const ComponentsItems = ({ registro, modalEditar, modalExcluir, modalFinalzar, m
     const [searchParams, setSearchParams] = useSearchParams()
 
     async function excluirLinha() {
-        setSearchParams({ 'id': registro.id, 'os': registro.ordem_servico })
+        setSearchParams({ 'id': registro.id, 'nota_mpm': registro.nota_mpm })
         modalExcluir(state => !state)
     }
 

@@ -16,7 +16,7 @@ const ModalExcluirRegistro = ({ getData, openModalExcluir }) => {
   const id = searchParams.get('id')
 
   const data = {
-    ordem_servico: searchParams.get('os')
+    nota_mpm: searchParams.get('nota_mpm')
   }
  
 

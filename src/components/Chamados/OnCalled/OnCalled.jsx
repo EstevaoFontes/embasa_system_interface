@@ -16,6 +16,7 @@ const OnCalled = ({ data, setModalHistoric, setModalFinish, setInfoModal }) => {
     const [showDescriptionExtravasando, setShowDescriptionExtravasando] = useState(false)
     const [showDescriptionMotivos, setShowDescriptionMotivos] = useState(false)
     const [showDescriptionFinalizado, setShowDescriptionFinalizado] = useState(false)
+    const [showDescriptionChamadoNoturno, setShowDescriptionChamadoNoturno] = useState(false)
 
     const { user, permissions } = useAuth()
 
@@ -107,7 +108,23 @@ const OnCalled = ({ data, setModalHistoric, setModalFinish, setInfoModal }) => {
                             </>
                         )}
 
-
+                        {data.chamado_noturno && !data.notaPM && (
+                            <>
+                                <i
+                                    className='bi bi-flag-fill'
+                                    id={styles.flag_chamado_noturno}
+                                    onMouseEnter={() => setShowDescriptionChamadoNoturno(true)}
+                                    onMouseLeave={() => setShowDescriptionChamadoNoturno(false)}
+                                >
+                                    <div
+                                        className={showDescriptionChamadoNoturno ? styles.flag_information_show : styles.flag_information_none}
+                                    >
+                                        <p>Sinalizado como Chamado Noturno.!</p>
+                                        <p>Favor colocar informação de Nota PM!</p>
+                                    </div>
+                                </i>
+                            </>
+                        )}
 
                         {data.isActive && (
                             <abbr title={data.extravasando === true ? 'Urgente' : 'Estável'}>

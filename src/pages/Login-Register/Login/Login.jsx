@@ -90,7 +90,8 @@ const Login = () => {
                                 <MessageErrorForm message={errors.password.message} color />
                             </div>
                         )}
-                        <Link className={styles.forgot_password} to={'/login/forgotPassword'}>Esqueci minha senha</Link>
+                        {/* implementar de troca de senha no login */}
+                        {/* <Link className={styles.forgot_password} to={'/login/forgotPassword'}>Esqueci minha senha</Link> */}
                     </div>
                 </div>
 

@@ -151,16 +151,17 @@
     top: .2em;
     right: .2em;
     cursor: pointer;
+    z-index: 99;
   }
 
-  #flag_motivos {
+  /* #flag_motivos {
     color: blue;
     font-size: .5em;
     position: absolute;
     top: .2em;
     left: .2em;
     cursor: pointer;
-  }
+  } */
 
   #flag_finalizacao {
     color: blue;
@@ -169,6 +170,7 @@
     top: .2em;
     left: .2em;
     cursor: pointer;
+    z-index: 99;
   }
 
 
@@ -185,4 +187,14 @@
 
   .flag_information_none {
     display: none;
+  }
+
+  #flag_chamado_noturno {
+    color: #000;
+    font-size: .5em;
+    position: absolute;
+    bottom: .2em;
+    left: .2em;
+    cursor: pointer;
+    z-index: 99;
   }

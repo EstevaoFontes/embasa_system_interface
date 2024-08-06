@@ -12,11 +12,13 @@ import { useApi } from '../../../hooks/useApi';
 import { useForm } from 'react-hook-form';
 import { useFieldArray } from 'react-hook-form';
 import { useFormValidator } from '../../../hooks/useFormValidator';
-
+import { useNavigate } from 'react-router-dom';
 // CONTEXT
 import { useAuth } from '../../../context/AuthProvider';
 
 const CalledEdit = () => {
+
+    const navigate = useNavigate()
 
     const token = JSON.parse(localStorage.getItem('token'))
 
@@ -48,6 +50,8 @@ const CalledEdit = () => {
             await fetchData(`called/editCall/${id}`, 'PATCH', data, '/', token)
         } catch (error) {
             console.log(error)
+        }finally{
+            navigate('/')
         }
     }
 
@@ -64,8 +68,6 @@ const CalledEdit = () => {
         getCalleds()
         return
     }, [])
-
-
 
     useEffect(() => {
 

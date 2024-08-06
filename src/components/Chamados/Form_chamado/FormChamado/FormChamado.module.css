@@ -107,3 +107,11 @@ abbr {
     width: 18.5rem;
     height: 3.5rem;
 }
+
+.chamado_noturno{
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+    font-size: .8em;
+    margin-bottom: 1rem ;
+}
