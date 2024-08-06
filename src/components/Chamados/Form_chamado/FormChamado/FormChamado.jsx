@@ -181,7 +181,7 @@ const CalledForm = ({ nome_titulo, nome_botao, formAtributes, showField = false 
                     </label>
                 </section>
 
-                <section className={styles.inputs}>
+                {/* <section className={styles.inputs}>
                     <label>
                         <span>Média PIPPE de Extravasamento</span>
                         <input
@@ -193,6 +193,15 @@ const CalledForm = ({ nome_titulo, nome_botao, formAtributes, showField = false 
 
                     <label>
                         <span>*PIPPE</span>
+                        
+                        {errors?.pippe && <MessageErrorForm message={errors.pippe.message} />}
+                        
+                        </label>
+                        </section> */}
+
+
+                        <label>
+                            <span>PIPPE</span>
                         <select
                             {...register('extravasando')}
                         >
@@ -200,12 +209,7 @@ const CalledForm = ({ nome_titulo, nome_botao, formAtributes, showField = false 
                             <option value={true}>ATINGIDO</option>
                             <option value={false}>NÃO ATINGIDO</option>
                         </select>
-
-                        {errors?.pippe && <MessageErrorForm message={errors.pippe.message} />}
-
-                    </label>
-                </section>
-
+                        </label>
 
                 <section className={styles.inputs}>
                     <label>
