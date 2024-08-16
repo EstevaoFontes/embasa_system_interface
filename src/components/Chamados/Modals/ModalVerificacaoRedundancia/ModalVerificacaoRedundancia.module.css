@@ -1,0 +1,96 @@
+.background {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.836);
+    z-index: 99999;
+}
+
+.image_inform{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: yellow;
+    width: 24rem;
+    height: 9.5rem;
+    border-radius: 20px 20px 0 0;
+    padding: .5rem;
+}
+
+.image_inform div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 6em;
+    height: 6rem;
+    background-color: rgba(138, 138, 3, 0.479);
+    border-radius: 100%;
+    animation: alert 1s ease infinite;
+}
+
+.image_inform div i{
+    font-size: 3.5em;
+    z-index: 9;
+    color: #fff;
+}
+
+
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 24rem;
+    height: 12rem;
+    background-color: #fff;
+    border-radius: 0 0 20px 20px;
+    padding: .5rem;
+}
+
+.container h2{
+   margin: .3em 0 0 0;
+}
+
+.container p {
+    text-align: center;
+    font-weight: bold;
+}
+
+.button_confirm {
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    width: 8em;
+    height: 2.5em;
+    background-color: green;
+    color: #fff;
+    font-weight: bold;
+    font-size: 1em;
+}
+
+.button_confirm:hover {
+    background-color: rgb(32, 188, 32);
+}
+
+@keyframes alert {
+    0% {
+      transform: scale(0.95);
+      box-shadow: 0 0 0 0 rgb(109, 109, 3);
+    }
+
+    70% {
+      transform: scale(1);
+      box-shadow: 0 0 0 10px rgba(252, 78, 78, 0);
+    }
+
+    100% {
+      transform: scale(0.95);
+      box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+    }
+  }

@@ -8,6 +8,7 @@ import MessageErrorForm from '../../../Geral/MessageErrorForm/MessageErrorForm';
 import Loading from '../../../Geral/Loading/Loading'
 import CalledFields from '../CampoAtualizacao/CampoAtualizacao';
 import InputMask from 'react-input-mask';
+import ModalVerificacaoRedundancia from '../../Modals/ModalVerificacaoRedundancia/ModalVerificacaoRedundancia';
 
 // HOOKS
 import { useState, useEffect } from 'react';
@@ -16,10 +17,11 @@ import { useApi } from '../../../../hooks/useApi'
 
 
 const AtualizationForm = ({ title, date, createdBy }) => {
+    const date_formated = new Date(date).toLocaleDateString()
     return (
         <div className={styles.container_atualizacoes}>
             <span className={styles.title}>{title}</span>
-            <span className={styles.atualizacao_user}>{`${createdBy} - ${date}`}</span>
+            <span className={styles.atualizacao_user}>{`${createdBy} - ${date_formated}`}</span>
         </div>
     )
 }
@@ -43,11 +45,13 @@ const CalledForm = ({ nome_titulo, nome_botao, formAtributes, showField = false 
         fields,
         remove,
         addAtualization,
-        getValues
     } = formAtributes
 
     const [unidades, setUnidades] = useState('')
     const unidadeEscolhida = unidades && listaUnidades.filter(unid => unid.nome_estacao.includes(unidades))
+    const [motivo, setMotivo] = useState('')
+
+    const [openModalVerificacaoRedundancia, setOpenModalVerificacaoRedundancia] = useState(false)
 
     const [chamadoNoturno, setChamadoNoturno] = useState(false)
 
@@ -59,26 +63,74 @@ const CalledForm = ({ nome_titulo, nome_botao, formAtributes, showField = false 
         }
     }
 
+    const verifica_obrigatoriedade_input_protocolo_coelba = () => {
+        if(motivo.includes('Energia')){
+            return true
+        }else{
+            return false
+        }
+    }
+
+    const verifica_horario_para_mostrar_input_chamado_noturno = () => {
+        const data_atual = new Date();
+
+        // Define as horas de início e fim do intervalo
+        const hora_inicio = 17;
+        const minuto_inicio = 30;
+
+        const hora_fim = 5;
+        const minuto_fim = 30;
+
+        // Cria os objetos Date para as 17:30 e 05:30 de hoje
+        const contagem_inicio = new Date();
+        contagem_inicio.setHours(hora_inicio, minuto_inicio, 0, 0);
+
+        const contagem_fim = new Date();
+        contagem_fim.setHours(hora_fim, minuto_fim, 0, 0);
+
+        if (data_atual >= contagem_inicio || data_atual <= contagem_fim) {
+            return true
+        } else {
+            return false
+        }
+
+    }
+
     useEffect(() => {
         if (data?.estacao) {
             setUnidades(data.estacao?.nome_estacao)
         }
+        return
     }, [data])
+    
 
     useEffect(() => {
         if (unidadeEscolhida) {
             setValue('id_estacao', unidadeEscolhida[0]?.id)
         }
+        return
     }, [unidadeEscolhida])
 
-
-    useEffect(() => {
-        obter_dados_estacoes()
-    }, [])
+    const estacoes_com_chamados_abertos = JSON.parse(localStorage.getItem('nome_estacao'))
 
     useEffect(() => {
         setValue('chamado_noturno', chamadoNoturno)
+        return
     }, [chamadoNoturno])
+
+    useEffect(() => {
+        if (!data) {
+            if (estacoes_com_chamados_abertos.includes(unidades)) {
+                setOpenModalVerificacaoRedundancia(state => !state)
+            }
+        }
+        return
+    }, [unidades])
+
+    useEffect(() => {
+        obter_dados_estacoes()
+        return
+    }, [])
 
     return (
         <div className={styles.container}>
@@ -90,16 +142,17 @@ const CalledForm = ({ nome_titulo, nome_botao, formAtributes, showField = false 
 
             <form onSubmit={handleSubmit(handleSubmitData)}>
 
-                <div className={styles.chamado_noturno}>
-                    <span>Chamado Noturno ?</span>
+                {verifica_horario_para_mostrar_input_chamado_noturno() && (
+                    <div className={styles.chamado_noturno}>
+                        <span>Chamado Noturno?</span>
 
-                    <input
-                        type="checkbox"
-                        {...register('chamado_noturno')}
-                        onChange={() => setChamadoNoturno(state => !state)}
-                    />
-
-                </div>
+                        <input
+                            type="checkbox"
+                            {...register('chamado_noturno')}
+                            onChange={() => setChamadoNoturno(state => !state)}
+                        />
+                    </div>
+                )}
 
                 <label>
                     <span>*Nota PM</span>
@@ -185,7 +238,7 @@ const CalledForm = ({ nome_titulo, nome_botao, formAtributes, showField = false 
 
                         <span>*Motivo</span>
 
-                        <select {...register('motivo')}>
+                        <select {...register('motivo')} onChange={(e) => setMotivo(e.target.value)}>
 
                             <option value=""></option>
 
@@ -195,12 +248,12 @@ const CalledForm = ({ nome_titulo, nome_botao, formAtributes, showField = false 
 
                         </select>
 
-                        {errors?.extravasando && <MessageErrorForm message={errors.extravasando.message} />}
+
 
                     </label>
                 </section>
 
-                {/* <section className={styles.inputs}>
+                <section className={styles.inputs}>
                     <label>
                         <span>Média PIPPE de Extravasamento</span>
                         <input
@@ -212,23 +265,21 @@ const CalledForm = ({ nome_titulo, nome_botao, formAtributes, showField = false 
 
                     <label>
                         <span>*PIPPE</span>
-                        
-                        {errors?.pippe && <MessageErrorForm message={errors.pippe.message} />}
-                        
-                        </label>
-                        </section> */}
 
+                        <select
+                            {...register('extravasando')}
+                        >
+                            <option value=""></option>
+                            <option value={true}>ATINGIDO</option>
+                            <option value={false}>NÃO ATINGIDO</option>
+                            <option value={false}>NÃO SE APLICA</option>
+                        </select>
 
-                <label>
-                    <span>PIPPE</span>
-                    <select
-                        {...register('extravasando')}
-                    >
-                        <option value=""></option>
-                        <option value={true}>ATINGIDO</option>
-                        <option value={false}>NÃO ATINGIDO</option>
-                    </select>
-                </label>
+                        {errors?.extravasando && <MessageErrorForm message={errors.extravasando.message} />}
+
+                    </label>
+                </section>
+
 
                 <section className={styles.inputs}>
                     <label>
@@ -246,6 +297,7 @@ const CalledForm = ({ nome_titulo, nome_botao, formAtributes, showField = false 
                             type="text"
                             {...register('protocoloCoelba')}
                             placeholder='Digite o protocolo informado'
+                            required={verifica_obrigatoriedade_input_protocolo_coelba()}
                         />
                     </label>
                 </section>
@@ -260,9 +312,14 @@ const CalledForm = ({ nome_titulo, nome_botao, formAtributes, showField = false 
                     ></textarea>
                 </label>
 
-                {data && data.atualizacoes && (
+                {data?.atualizacoes && (
                     data.atualizacoes.map((atualizacao, index) => (
-                        <AtualizationForm key={index} title={atualizacao.title} date={atualizacao.data} createdBy={atualizacao.createBy} />
+                        <AtualizationForm
+                            key={index}
+                            title={atualizacao.title}
+                            date={atualizacao.createdAt}
+                            createdBy={atualizacao.criado_por}
+                        />
                     ))
                 )}
 
@@ -352,6 +409,12 @@ const CalledForm = ({ nome_titulo, nome_botao, formAtributes, showField = false 
                     <span>{isSubmitting ? <Loading /> : nome_botao}</span>
                 </button>
             </form>
+
+            {openModalVerificacaoRedundancia && (
+                <ModalVerificacaoRedundancia
+                    setOpenModalVerificacaoRedundancia={setOpenModalVerificacaoRedundancia}
+                />
+            )}
         </div>
     )
 }

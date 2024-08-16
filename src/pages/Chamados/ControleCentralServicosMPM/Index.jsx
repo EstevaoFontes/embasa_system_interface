@@ -19,6 +19,8 @@ const Planilha = () => {
 
     const token = JSON.parse(localStorage.getItem('token'))
 
+    const [activeButton, setActiveButton] = useState('todos')
+
     const [openModalEditar, setOpenModalEditar] = useState(false)
     const [openModalExcluir, setOpenModalExcluir] = useState(false)
     const [openModalFinalizar, setOpenModalFinalizar] = useState(false)
@@ -70,6 +72,11 @@ const Planilha = () => {
         }
     }
 
+    function todos_chamados() {
+        setDados(data)
+        setActiveButton('todos')
+    }
+
     function filtrar_agua() {
         const palavrasChave = ['eta', 'central'];
 
@@ -79,6 +86,8 @@ const Planilha = () => {
         });
 
         setDados(filtro_esgoto_ete);
+
+        setActiveButton('agua')
     }
 
     function filtrar_esgoto() {
@@ -90,6 +99,8 @@ const Planilha = () => {
         });
 
         setDados(filtro_esgoto_ete);
+
+        setActiveButton('esgoto')
     }
 
 
@@ -198,9 +209,26 @@ const Planilha = () => {
 
 
                 <div className={styles.filtros_link}>
-                    <span onClick={() => setDados(data)}>Todos</span>
-                    <span onClick={() => filtrar_esgoto()}>Filtrar Esgoto</span>
-                    <span onClick={() => filtrar_agua()}>Filtrar Àgua</span>
+                    <span
+                        onClick={() => todos_chamados()}
+                        style={{ color: activeButton === 'todos' && 'orange' }}
+                    >
+                        Todos
+                    </span>
+
+                    <span
+                        onClick={() => filtrar_esgoto()}
+                        style={{ color: activeButton === 'esgoto' && 'orange' }}
+                    >
+                        Filtrar Esgoto
+                    </span>
+                    
+                    <span
+                        onClick={() => filtrar_agua()}
+                        style={{ color: activeButton === 'agua' && 'orange' }}
+                    >
+                        Filtrar Àgua
+                    </span>
                 </div>
 
                 <div className={styles.search_input}>

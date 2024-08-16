@@ -7,16 +7,14 @@ import { useEffect, useState } from 'react';
 import { useAuth } from '../../../context/AuthProvider'
 // UTIL
 import { calcula_hora_hoje, calcula_hora_com_data_final_dataJS } from '../../../utils/calculateHour';
+// COMPONENTS
+import Flags from '../../Geral/Flags/Flags';
+import VisualStatus from '../../Geral/VisualStatus/VisualStatus';
 
 const OnCalled = ({ data, setModalHistoric, setModalFinish, setInfoModal }) => {
 
     const [searchParams, setSearchParams] = useSearchParams()
     const [hoursCalculated, setHoursCalculated] = useState()
-
-    const [showDescriptionExtravasando, setShowDescriptionExtravasando] = useState(false)
-    const [showDescriptionMotivos, setShowDescriptionMotivos] = useState(false)
-    const [showDescriptionFinalizado, setShowDescriptionFinalizado] = useState(false)
-    const [showDescriptionChamadoNoturno, setShowDescriptionChamadoNoturno] = useState(false)
 
     const { user, permissions } = useAuth()
 
@@ -24,7 +22,7 @@ const OnCalled = ({ data, setModalHistoric, setModalFinish, setInfoModal }) => {
 
     const date = new Date(data.createdAt).toLocaleString('pt-BR')
 
-    const id = data.id ? data.id : null
+    const id = data?.id
 
     function analise_divergencias_extravasamento() {
 
@@ -60,13 +58,11 @@ const OnCalled = ({ data, setModalHistoric, setModalFinish, setInfoModal }) => {
         if (data.isActive) {
             const hora_calculada = calcula_hora_hoje(data.createdAt)
             setHoursCalculated(hora_calculada)
-        }
-
-        if (!data.isActive) {
+        } else {
             const data_total_calculada = calcula_hora_com_data_final_dataJS(data.createdAt, data.dataEncerramento)
             setHoursCalculated(data_total_calculada)
         }
-    }, [])
+    }, [data])
 
     return (
         <>
@@ -75,111 +71,65 @@ const OnCalled = ({ data, setModalHistoric, setModalFinish, setInfoModal }) => {
                     <div className={styles.container}>
 
                         {analise_divergencias_extravasamento() && (
-                            <>
-                                <i
-                                    className='bi bi-flag-fill'
-                                    id={styles.flag_extravasando}
-                                    onMouseEnter={() => setShowDescriptionExtravasando(true)}
-                                    onMouseLeave={() => setShowDescriptionExtravasando(false)}
-                                >
-                                    <div
-                                        className={showDescriptionExtravasando ? styles.flag_information_show : styles.flag_information_none}
-                                    >
-                                        <p>Divergências nos dados de extravasamento</p>
-                                    </div>
-                                </i>
-                            </>
+                            <Flags
+                                color={'red'}
+                                position_horizontal={'right'}
+                                position_vertical={'top'}
+                                text={'Divergências nos dados de extravasamento.'}
+                            />
                         )}
 
                         {data.chamado_eletromecanico?.isActive == false && (
-                            <>
-                                <i
-                                    className='bi bi-flag-fill'
-                                    id={styles.flag_finalizacao}
-                                    onMouseEnter={() => setShowDescriptionFinalizado(true)}
-                                    onMouseLeave={() => setShowDescriptionFinalizado(false)}
-                                >
-                                    <div
-                                        className={showDescriptionFinalizado ? styles.flag_information_show : styles.flag_information_none}
-                                    >
-                                        <p>A Eletromecânica finalizou o chamado!</p>
-                                    </div>
-                                </i>
-                            </>
+                            <Flags
+                                color={'blue'}
+                                position_horizontal={'left'}
+                                position_vertical={'top'}
+                                text={'A Eletromecânica finalizou o chamado!'}
+                            />
                         )}
 
                         {data.chamado_noturno && !data.notaPM && (
-                            <>
-                                <i
-                                    className='bi bi-flag-fill'
-                                    id={styles.flag_chamado_noturno}
-                                    onMouseEnter={() => setShowDescriptionChamadoNoturno(true)}
-                                    onMouseLeave={() => setShowDescriptionChamadoNoturno(false)}
-                                >
-                                    <div
-                                        className={showDescriptionChamadoNoturno ? styles.flag_information_show : styles.flag_information_none}
-                                    >
-                                        <p>Sinalizado como Chamado Noturno.!</p>
-                                        <p>Favor colocar informação de Nota PM!</p>
-                                    </div>
-                                </i>
-                            </>
+                            <Flags
+                                color={'purple'}
+                                position_horizontal={'left'}
+                                position_vertical={'bottom'}
+                                text={'Sinalizado como Chamado Noturno!'}
+                                text2={'Favor colocar informação de Nota PM!'}
+                            />
                         )}
 
-                        {data.isActive && (
-                            <abbr title={data.extravasando === true ? 'Urgente' : 'Estável'}>
-                                <div className={data.extravasando === true ? styles.urgent : styles.normal}></div>
-                            </abbr>
+                        {(data.isActive && data.extravasando) && (
+                            <VisualStatus color={'red'} legenda={'Urgente'} />
                         )}
 
-                        {!data.isActive && (
-                            <abbr title={data.indevido ? 'Indevido' : 'Finalizado'}>
-                                <div className={data.indevido ? styles.indevido : styles.completed}></div>
-                            </abbr>
+                        {(data.isActive && !data.extravasando) && (
+                            <VisualStatus color={'yellow'} legenda={'Estável'} />
+                        )}
+
+                        {(!data.isActive && !data.indevido) && (
+                            <VisualStatus color={'grey'} legenda={'Finalizado'} />
+                        )}
+
+                        {(!data.isActive && data.indevido) && (
+                            <VisualStatus color={'#ccc'} legenda={'Indevido'} />
                         )}
 
                     </div>
                 </td>
 
-                <td
-                    className={data.indevido ? styles.td_indevido : ""}
-                >
-                    {data.notaPM}
-                </td>
+                <td className={data.indevido ? styles.td_indevido : ""}>{data.notaPM}</td>
 
-                <td
-                    className={data.indevido ? styles.td_indevido : ""}
-                >
-                    {data.criado_por?.name}
-                </td>
+                <td className={data.indevido ? styles.td_indevido : ""}>{data.criado_por?.name}</td>
 
-                <td
-                    className={data.indevido ? styles.td_indevido : ""}
-                >
-                    {date}
-                </td>
+                <td className={data.indevido ? styles.td_indevido : ""}>{date}</td>
 
-                <td
-                    className={data.indevido ? styles.td_indevido : ""}
-                >
-                    {data.estacao?.nome_estacao}
-                </td>
+                <td className={data.indevido ? styles.td_indevido : ""}>{data.estacao?.nome_estacao}</td>
 
-                <td
-                    className={data.indevido ? styles.td_indevido : ""}
-                >
-                    {data.motivo}
-                </td>
+                <td className={data.indevido ? styles.td_indevido : ""}>{data.motivo}</td>
 
-                <td
-                    className={data.indevido ? styles.td_indevido : ""}
-                >
-                    {data.extravasando === true ? 'Atingido' : 'Não Atingido'}
-                </td>
+                <td className={data.indevido ? styles.td_indevido : ""}>{data.extravasando ? 'Atingido' : 'Não Atingido/ Não se aplica'}</td>
 
-                <td
-                    className={data.indevido ? styles.td_indevido : ""}
-                >
+                <td className={data.indevido ? styles.td_indevido : ""}>
                     {`${hoursCalculated} ${hoursCalculated > 1 ? 'horas' : 'hora '}`}
                 </td>
 
@@ -187,16 +137,18 @@ const OnCalled = ({ data, setModalHistoric, setModalFinish, setInfoModal }) => {
                     <i id={styles.dropdown} className={'bi bi-three-dots-vertical'}></i>
 
                     <ul className={styles.options}>
+
                         <li>
                             < button onClick={() => handleOpenModal(setInfoModal)}>
                                 <span>Informações</span>
                             </button >
                         </li>
-                        {/* <li>
+
+                        <li>
                             < button onClick={() => handleOpenModal(setModalHistoric)}>
                                 <span>Histórico</span>
                             </button >
-                        </li> */}
+                        </li>
 
                         {
                             data?.isActive && (

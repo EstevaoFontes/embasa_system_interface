@@ -16,8 +16,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 20rem;
-    height: 30rem;
+    width: 25rem;
+    height: 35rem;
     background-color: #fff;
     padding: 1rem;
     animation: modalShow 1s ease;
@@ -43,11 +43,14 @@
 .historic {
     border: 1px solid rgb(211, 202, 202);
     border-radius: 5px;
-    width: 20rem;
+    width: 25rem;
     background-color: #ccccccb4;
     padding: 0.3rem;
     overflow: auto;
     height: calc(100vh - 116px);
+    display: flex;
+    flex-direction: column;
+    gap: .6rem;
 
     &::-webkit-scrollbar-thumb {
         background-color: blue;

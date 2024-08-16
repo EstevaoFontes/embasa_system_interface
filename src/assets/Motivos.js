@@ -12,7 +12,7 @@ const motivos = [
     "Manutenções - Reparo Hidráulico",
     "Manutenções - Reparo Civil",
     "Manutenções - Parada programada MPME",
-    "Recalque - Reparo na linhda de recalque",
+    "Recalque - Reparo na linha de recalque",
     "Recalque - Lavagem de Interceptor",
     "Recalque - Reparo em PV",
     "Recalque - Desgastes no Barrilete ou Componentes Hidráulicos",

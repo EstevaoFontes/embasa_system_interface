@@ -1,0 +1,21 @@
+#flag {
+    font-size: .5em;
+    position: absolute;
+    cursor: pointer;
+}
+
+.flag_information_show {
+    font-size: 1.2em;
+    width: 9rem;
+    font-weight: bold;
+    position: absolute;
+    background-color: rgb(80, 79, 79);
+    color: #fff;
+    top: -3rem;
+    left: .5rem;
+    z-index: 99;
+}
+
+.flag_information_none {
+    display: none;
+}

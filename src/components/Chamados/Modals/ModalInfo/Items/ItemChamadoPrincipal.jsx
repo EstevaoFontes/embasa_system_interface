@@ -48,7 +48,7 @@ const ItemChamadoPrincipal = ({ data }) => {
 
           <fieldset>
             <legend>Nível de Extravasamento</legend>
-            <p>{data.extravasando === true ? 'Atingido' : 'Não Atingido'}</p>
+            <p>{data.extravasando ? 'Atingido' : 'Não Atingido/ Não se aplica'}</p>
           </fieldset>
 
           <fieldset>

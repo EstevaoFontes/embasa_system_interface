@@ -172,7 +172,7 @@ function App() {
             />
 
             <Route
-              path='/planilha'
+              path='/chamadosppcm'
               element={authorization ? <Planilha /> : <Navigate to='/' />}
             />
 

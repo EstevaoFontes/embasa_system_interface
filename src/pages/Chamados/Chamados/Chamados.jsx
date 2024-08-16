@@ -5,7 +5,8 @@ import OnCalled from '../../../components/Chamados/OnCalled/OnCalled';
 import Loading from '../../../components/Geral/Loading/Loading';
 import ModalInfo from '../../../components/Chamados/Modals/ModalInfo/index'
 import ModalFinish from '../../../components/Chamados/Modals/ModalFinish/ModalFinish';
-import ModalHistoric from '../../../components/Chamados/Modals/ModalHistoric/Modal/ModalHistoric';
+import ModalHistoric from '../../../components/Chamados/Modals/ModalHistoric/index';
+import SideBar from '../../../components/Geral/SideBar/SideBar';
 
 // HOOKS
 import { useEffect, useState } from 'react';
@@ -20,7 +21,7 @@ const Chamados = () => {
 
     const [search, setSearch] = useState("")
     const [filterChosen, setFilterChosen] = useState('')
-    const [showSideBar, setShowSideBar] = useState(false)
+    // const [showSideBar, setShowSideBar] = useState(false)
 
     const { loading, data, fetchData } = useApi()
     const { user, permissions } = useAuth()
@@ -36,11 +37,10 @@ const Chamados = () => {
             }
 
             if (filterChosen === 'operador') {
-                return call.estacao?.nome_estacao.toLocaleLowerCase().includes(search.toLocaleLowerCase())
+                return call.criado_por?.name.toLocaleLowerCase().includes(search.toLocaleLowerCase())
             }
 
             return call[filterChosen].toLocaleLowerCase().includes(search.toLocaleLowerCase())
-
 
         } else {
             setSearch("")
@@ -65,8 +65,8 @@ const Chamados = () => {
     }
 
     function ordenar_chamado(data) {
-        if (data.pippe === true) return 1
-        if (data.pippe === false) return -1
+        if (data.extravasando === true) return 1
+        if (data.extravasando === false) return -1
         return
     }
 
@@ -111,47 +111,44 @@ const Chamados = () => {
         setIndiceDados(3)
     }
 
+    function novo_chamado() {
+
+        const coleta_nome_estacoes_para_verificacao_redundancia = data?.map(estacoes => {
+            if (estacoes.isActive) {
+                const nome = estacoes.estacao?.nome_estacao
+                return nome
+            }
+            return
+        })
+
+        localStorage.setItem('nome_estacao', JSON.stringify(coleta_nome_estacoes_para_verificacao_redundancia))
+
+        navigate('./newCalled')
+    }
+
+    const acoes_side_bar = {
+        'Chamados Ativos': () => getCalleds(),
+        'Chamados Finalizados': () => completedCalls(),
+        'Relatório Agersa': () => navigate('./pdfCall')
+    }
+
     useEffect(() => {
         getCalleds()
+        localStorage.removeItem('nome_estacao')
         return
     }, [])
 
     return (
         <main className={styles.container}>
 
-            <aside className={showSideBar ? styles.side_bar : styles.side_bar_none}>
-                <ul>
-                    <li onClick={() => getCalleds()}>
-                        <span>Chamados Ativos</span>
-                    </li>
-                    <li onClick={() => completedCalls()} >
-                        <span>Chamados Finalizados</span>
-                    </li>
-
-                    <li
-                        className={styles.container_realtorio_agersa}
-                        onClick={() => navigate('./pdfCall')}
-                    >
-                        <span>Relatório Agersa</span>
-                        <i id={styles.caret_ralatorio_agersa}></i>
-                    </li>
-                </ul>
-            </aside>
-
-            <button
-                onClick={() => setShowSideBar(state => !state)}
-                className={showSideBar ? styles.close_side_bar : styles.show_side_bar}
-                id={styles.float_button_sidebar}
-            >
-                <i className={showSideBar ? 'bi bi-x' : 'bi bi-list'}></i>
-            </button>
+            <SideBar objeto={acoes_side_bar} />
 
             <div className={styles.actions}>
 
                 <button
                     id={styles.button_new_called}
                     className='btn_custom2'
-                    onClick={() => navigate('./newCalled')}
+                    onClick={() => novo_chamado()}
                     disabled={user.funcao === 'Manutenção'}
                 >
                     <span>Novo chamado</span>
@@ -159,7 +156,6 @@ const Chamados = () => {
 
                 <select onChange={(e) => setFilterChosen(e.target.value)}>
                     <option value=''>Sem filtro</option>
-                    {/* melhorar lógica para buscar o operador que é agora é uma chave extrangeira */}
                     <option value="operador">Operador</option>
                     <option value="unidade">Unidade</option>
                     <option value="motivo">Motivo</option>
@@ -185,7 +181,7 @@ const Chamados = () => {
                     </button>
                 </abbr>
 
-                <button className={styles.botao_planilha} onClick={() => navigate('/planilha')}>
+                <button className={styles.botao_planilha} onClick={() => navigate('/chamadosppcm')}>
                     <span>Chamados PPCM</span>
                 </button>
 

@@ -223,7 +223,7 @@
   width: 20px;
   border-radius: 50%;
   animation: ativo 1s linear infinite;
-  background-color: #ff0000;
+  background-color: rgb(217, 217, 16);
   animation: urgent 1s linear infinite;
 }
 

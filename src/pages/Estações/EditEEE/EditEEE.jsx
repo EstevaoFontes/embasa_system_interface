@@ -58,7 +58,7 @@ const EditEEE = () => {
         })
 
         try {
-            await fetchData(`estacao/editEEE/${id}`, 'PATCH', form_data, '/eee', token)
+            await fetchData(`estacao/editEEE/${id}`, 'PATCH', form_data, `/eee?query=${data.nome_estacao}`, token)
         } catch (error) {
             console.log(error)
         }
@@ -71,7 +71,6 @@ const EditEEE = () => {
 
     useEffect(() => {
         getUniqueEstacao()
-
         return
     }, [])
 
@@ -86,7 +85,7 @@ const EditEEE = () => {
 
     return (
         <div className={styles.container}>
-            {!isSubmitting && <BackButton to={"eee"} />}
+            {!isSubmitting && <BackButton to={`eee?query=${data.nome_estacao}`} />}
 
             <h1>Editar Dados da Estação</h1>
 

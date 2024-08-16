@@ -22,10 +22,12 @@ const PdfEEE = () => {
       border: '1px solid black',
       padding: '2px',
       width: '277.5px',
-      minHeight: '19px',
+      minHeight: '21.5px',
+      maxHeight: 'auto',
       flexDirection: 'row',
       justifyContent: 'center',
-      alignItems: 'center'
+      alignItems: 'center',
+      fontSize: '8px'
     },
     text2: {
       flexDirection: 'row',
@@ -124,7 +126,8 @@ const PdfEEE = () => {
 
   return (
     <>
-      <BackButton to={'eee'} />
+      <BackButton to={`eee?query=${data.nome_estacao}`} />
+      
       <div className={styles.container_pdf}>
 
         <PDFViewer style={{ width: '60%', minHeight: '80vh', marginTop: '10px' }}>

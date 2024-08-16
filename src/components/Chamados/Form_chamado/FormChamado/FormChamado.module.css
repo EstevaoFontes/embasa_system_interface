@@ -80,18 +80,18 @@ abbr {
 .container_atualizacoes{
     display: flex;
     flex-direction: column;
-    border: 1px solid black;
+    border: 2px dotted black;
     margin-bottom: .7rem;
     width: 37rem;
     height: auto;
     padding: .5rem;
-    border-radius: 10px;
+    border-radius: 5px;
     background-color: #ccc;
 }
 
 .atualizacao_user{
     display: flex;
-    font-size: .8em;
+    font-size: .7em;
     color: grey;
     gap: 2rem;
 }

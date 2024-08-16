@@ -6,8 +6,8 @@ import Loading from '../../../components/Geral/Loading/Loading';
 import FormChamado from '../../../components/Chamados/Form_chamado/FormChamado/FormChamado'
 
 //HOOKS
-import { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { json, useParams } from 'react-router-dom';
 import { useApi } from '../../../hooks/useApi';
 import { useForm } from 'react-hook-form';
 import { useFieldArray } from 'react-hook-form';
@@ -42,16 +42,56 @@ const CalledEdit = () => {
 
 
     function addAtualization() {
-        append({ title: '', data: new Date().toLocaleString('pt-BR'), createBy: user.name })
+        append({ title: '', createdAt: new Date(), criado_por: user.name })
     }
 
-    const handleSubmitData = async (data) => {
+    function registro_edicoes(novos_dados, dados_antigos) {
+
+        const valoresAlterados = Object.keys(dados_antigos).reduce((acc, key) => {
+            if (key === 'extravasando') {
+                const antigoBoolean = Boolean(dados_antigos.extravasando);
+                const novoBoolean = Boolean(JSON.parse(novos_dados.extravasando));
+
+                if (antigoBoolean !== novoBoolean) {
+                    acc[key] = {
+                        valor_antigo: antigoBoolean,
+                        novo_valor: novoBoolean
+                    };
+                }
+            } else if (dados_antigos[key] !== novos_dados[key]) {
+                acc[key] = {
+                    valor_antigo: dados_antigos[key],
+                    novo_valor: novos_dados[key]
+                };
+            }
+            return acc;
+        }, {});
+
+        valoresAlterados.id_user_edicao = user.id
+
+        valoresAlterados.id_chamado = id
+
+        delete valoresAlterados.estacao
+        delete valoresAlterados.atualizacoes
+        delete valoresAlterados.chamado_eletromecanico
+        delete valoresAlterados.criado_por
+
+        return valoresAlterados;
+    }
+
+    const handleSubmitData = async (dados) => {
+
+        if (dados.horaInicioPippe.trim().replace(/_/g, '') === '') {
+            setValue('horaInicioPippe', '')
+        }
+
+        const obter_registro_de_edicao = registro_edicoes(dados, data)
+
         try {
-            await fetchData(`called/editCall/${id}`, 'PATCH', data, '/', token)
+            await fetchData(`called/editCall/${id}`, 'PATCH', dados, '/', token)
+            await fetchData('called/registerEdit', 'POST', obter_registro_de_edicao, '/', token)
         } catch (error) {
             console.log(error)
-        }finally{
-            navigate('/')
         }
     }
 
@@ -94,7 +134,7 @@ const CalledEdit = () => {
         data,
         fields,
         remove,
-        addAtualization
+        addAtualization,
     }
 
 

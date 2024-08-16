@@ -5,42 +5,27 @@ import { useState } from 'react';
 import Requests from '../../components/Configurações/GeneralSettingsComponents/Requests/index'
 import Users from '../../components/Configurações/GeneralSettingsComponents/Users/index';
 import Reports from '../../components/Configurações/GeneralSettingsComponents/Reports/Reports';
+import SideBar from '../../components/Geral/SideBar/SideBar';
 
 const GeneralSettings = () => {
 
-    const [showSideBar, setShowSideBar] = useState(true)
-    const [actionSelected, setActionSelected] = useState();
+    const [actionSelected, setActionSelected] = useState(null);
     
     const itemsActions = [<Requests />, <Users />, <Reports />];
+
+    const acoes_side_bar = {
+        'Solicitações pendentes': () => setActionSelected(itemsActions[0]),
+        'Usuários': () => setActionSelected(itemsActions[1]),
+        'Relatórios Detalhados': () =>  setActionSelected(itemsActions[2])
+    }
 
     return (
         <div className={styles.container}>
 
-            <button
-                className={showSideBar ? styles.close_side_bar : styles.show_side_bar}
-                onClick={() => setShowSideBar(state => !state)}
-            >
-                <i className={showSideBar ? 'bi bi-x' : 'bi bi-list'}></i>
-            </button>
+            <SideBar objeto={acoes_side_bar}/>
 
-            <aside className={showSideBar ? styles.side_bar : styles.side_bar_none}>
-                <ul>
-                    <li onClick={() => setActionSelected(itemsActions[0])}>
-                        <span>Solicitações pendentes</span>
-                    </li>
-
-                    <li onClick={() => setActionSelected(itemsActions[1])}>
-                        <span>Usuários</span>
-                    </li>
-
-                    <li onClick={() => setActionSelected(itemsActions[2])}>
-                        <span> Relatórios Detalhados </span>
-                    </li>
-
-                </ul>
-            </aside>
-
-            <div className={styles.float_container} >
+            <div className={styles.float_container}>
+                
                 {!actionSelected && (
                     <div className={styles.empty}>
                         <i className='bi bi-arrow-left'></i>

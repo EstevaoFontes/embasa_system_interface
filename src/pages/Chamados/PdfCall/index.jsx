@@ -65,9 +65,11 @@ const PdfCall = () => {
             endereco: item.estacao?.endereco,
             createdAt: new Date(item.createdAt).toLocaleString('pt-BR'),
             dataEncerramento: item.chamado_eletromecanico?.data_hora_fim ? item.chamado_eletromecanico?.data_hora_fim : '-',
+            
             tempoTotalExtravasamento: item.chamado_eletromecanico && item.chamado_eletromecanico?.data_hora_fim ?
                 tempoExtravasamento_calculo_formatacao(item.createdAt, item.chamado_eletromecanico?.data_hora_fim) :
                 '-',
+                
             motivo: item.motivo,
         }
         return chamado_obj

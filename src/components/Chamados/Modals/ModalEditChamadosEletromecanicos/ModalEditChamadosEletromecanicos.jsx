@@ -51,9 +51,9 @@ const ModalEditChamadosEletromecanicos = ({ setOpenModalEditar, getData }) => {
 
     useEffect(() => {
         buscarUnicoChamado()
-
         return
     }, [])
+
 
     useEffect(() => {
         Object.keys(data).forEach(item => {
@@ -61,6 +61,10 @@ const ModalEditChamadosEletromecanicos = ({ setOpenModalEditar, getData }) => {
 
             if (item === 'sintomas') {
                 setSintomas(data[item])
+            }
+
+            if (item === 'descricao_sintomas') {
+                setDescricao(data[item])
             }
         })
     }, [data])
@@ -79,12 +83,12 @@ const ModalEditChamadosEletromecanicos = ({ setOpenModalEditar, getData }) => {
 
                         <label>
                             <span>Data início</span>
-                            <input type="text" {...register('data_inicio')}/>
+                            <input type="text" {...register('data_inicio')} />
                         </label>
 
                         <label>
                             <span>Hora início</span>
-                            <input type="text" {...register('hora_inicio')}/>
+                            <input type="text" {...register('hora_inicio')} />
                         </label>
 
                         <label>
@@ -166,8 +170,8 @@ const ModalEditChamadosEletromecanicos = ({ setOpenModalEditar, getData }) => {
                         </label>
 
                         <label>
-                            <span>Sintomas:</span>
-                            <select onClick={(e) => setSintomas(e.target.value)} {...register('sintomas')}>
+                            <span>Classe de Equipamentos:</span>
+                            <select onChange={(e) => setSintomas(e.target.value)} {...register('sintomas')} value={sintomas}>
                                 <option value=""></option>
                                 {Object.keys(classe_de_sintomas).map((sintoma, index) => (
                                     <option
@@ -181,8 +185,8 @@ const ModalEditChamadosEletromecanicos = ({ setOpenModalEditar, getData }) => {
                         </label>
 
                         <label>
-                            <span>Descrição do Sintoma:</span>
-                            <select {...register('descricao_sintomas')} onClick={(e) => setDescricao(e.target.value)}>
+                            <span>Sintoma:</span>
+                            <select {...register('descricao_sintomas')} onChange={(e) => setDescricao(e.target.value)} value={descricao}>
                                 <option value=""></option>
                                 {sintomas && classe_de_sintomas[sintomas].map((descricao, index) => (
                                     <option

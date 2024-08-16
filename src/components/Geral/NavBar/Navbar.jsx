@@ -27,20 +27,22 @@ const NavBar = () => {
                         )}
 
                         {(user.funcao !== 'Manutenção' && user.funcao !== 'Visitante') && (
-                            <li>
-                                <abbr title="Estação Elevatória de Esgoto">
-                                    <NavLink className={({ isActive }) => (isActive ? styles.active : "")} to='/eee'>
-                                        <span>Estações</span>
+                            <>
+                                <li>
+                                    <NavLink to='/chamadosppcm' className={({ isActive }) => (isActive ? styles.active : "")}>
+                                        <span>Chamados PPCM</span>
                                     </NavLink>
-                                </abbr>
-                            </li>
+                                </li>
+                                <li>
+                                    <abbr title="Estação Elevatória de Esgoto">
+                                        <NavLink className={({ isActive }) => (isActive ? styles.active : "")} to='/eee'>
+                                            <span>Estações</span>
+                                        </NavLink>
+                                    </abbr>
+                                </li>
+                            </>
                         )}
 
-                        <li>
-                            <NavLink to='/planilha' className={({ isActive }) => (isActive ? styles.active : "")}>
-                                <span>Chamados PPCM</span>
-                            </NavLink>
-                        </li>
 
                         {
                             permissions.pages.includes(user?.funcao) && (

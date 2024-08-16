@@ -1,6 +1,9 @@
 import styles from './ControleCentralServicosMPM.module.css';
+// HOOKS
 import { useSearchParams } from 'react-router-dom';
 import { useAuth } from '../../../context/AuthProvider';
+// COMPONENTS
+import VisualStatus from '../../../components/Geral/VisualStatus/VisualStatus';
 
 const ComponentsItems = ({ registro, modalEditar, modalExcluir, modalFinalzar, modalInfo }) => {
 
@@ -34,13 +37,23 @@ const ComponentsItems = ({ registro, modalEditar, modalExcluir, modalFinalzar, m
 
             <td >
                 <div className={styles.status}>
+
                     <span style={{ display: 'none' }}>
                         {registro.isActive ? 'Finalizado' : 'Pendente'}
                         {registro.isActive == false && registro.indevido && 'Indevido'}
                     </span>
-                    <div className={registro.isActive && styles.urgent}></div>
-                    <div className={!registro.isActive && !registro.indevido && styles.normal}></div>
-                    <div className={!registro.isActive && registro.indevido && styles.indevido_status}></div>
+
+                    {registro.isActive && (
+                        <VisualStatus color={'rgb(217, 217, 16)'} legenda={'Em Tratativa'} />
+                    )}
+
+                    {(!registro.isActive && !registro.indevido) && (
+                        <VisualStatus color={'rgb(84, 221, 5)'} legenda={'Finalizado'} />
+                    )}
+
+                    {(!registro.isActive && registro.indevido) && (
+                        <VisualStatus color={'#ccc'} legenda={'Indevido'} />
+                    )}
                 </div>
             </td>
 
@@ -68,38 +81,25 @@ const ComponentsItems = ({ registro, modalEditar, modalExcluir, modalFinalzar, m
                             </button >
                         </li>
 
-                        {permissions.area_manutencao_called.includes(user.funcao) && (
+                        {(permissions.area_manutencao_called.includes(user.funcao) && registro.isActive) && (
                             <>
-                                {registro.isActive === false ? (
-                                    <></>
-                                ) : (
-                                    <li>
-                                        <button onClick={() => handleOpenModalEditar()}>
-                                            <span>Editar</span>
-                                        </button >
-                                    </li>
-                                )}
+                                <li>
+                                    <button onClick={() => handleOpenModalEditar()}>
+                                        <span>Editar</span>
+                                    </button >
+                                </li>
 
+                                <li>
+                                    <button onClick={() => handleOpenModalFinalizar()}>
+                                        <span>Finalizar</span>
+                                    </button>
+                                </li>
 
-                                {registro.isActive === false ? (
-                                    <></>
-                                ) : (
-                                    <li>
-                                        <button onClick={() => handleOpenModalFinalizar()}>
-                                            <span>Finalizar</span>
-                                        </button>
-                                    </li>
-                                )}
-
-                                {registro.isActive === false ? (
-                                    <></>
-                                ) : (
-                                    <li>
-                                        <button onClick={() => excluirLinha()}>
-                                            <span>Excluir</span>
-                                        </button >
-                                    </li>
-                                )}
+                                <li>
+                                    <button onClick={() => excluirLinha()}>
+                                        <span>Excluir</span>
+                                    </button >
+                                </li>
                             </>
                         )}
                     </ul>

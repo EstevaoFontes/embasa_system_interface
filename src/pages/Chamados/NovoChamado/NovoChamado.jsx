@@ -27,6 +27,9 @@ const NewCalled = () => {
     })
 
     const handleSubmitData = async (data) => {
+        if (data.horaInicioPippe.trim().replace(/_/g, '') === '') {
+            setValue('horaInicioPippe', '')
+        }
         try {
             await fetchData('called/newCalled', 'POST', data, '/', token)
         } catch (error) {

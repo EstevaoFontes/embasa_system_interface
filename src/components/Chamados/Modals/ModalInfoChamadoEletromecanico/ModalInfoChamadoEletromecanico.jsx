@@ -91,12 +91,12 @@ const ModalInfoChamadoEletromecanico = ({openModalInfo}) => {
                     </fieldset>
 
                     <fieldset>
-                        <legend>Sintomas</legend>
+                        <legend>Classe de Equipamentos</legend>
                         <p>{data.sintomas}</p>
                     </fieldset>
 
                     <fieldset>
-                        <legend>Descrição do Sintoma</legend>
+                        <legend>Sintomas</legend>
                         <p>{data.descricao_sintomas}</p>
                     </fieldset>
 
